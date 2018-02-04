@@ -7,6 +7,7 @@
  */
 
 ?>
-<footer class='footer container'>
-    <span class='footer title'>Made with &lt3 by RAV3N</span>
+<footer class="">
+    <span class="madeWithLove">Made with <span class="heart">♥</span> by RAV3N</span>
+    <a href="https://github.com/derRAV3N/gw2raider" class="">View this project on GitHub</a>
 </footer>

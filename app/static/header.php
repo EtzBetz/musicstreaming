@@ -7,9 +7,9 @@
  */
 
 ?>
-<header class='' id='navbar'>
+<header class="" id="navbar">
     <div>
-        <span class=''>Blueprint</span>
+        <a href="">GW2Raider</a>
     </div>
     <div>
         <a href="register">Overview</a>
