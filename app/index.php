@@ -8,10 +8,11 @@
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>GW2Raider - Not a Raidar!</title>
         <link rel="stylesheet" href="./css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,600" rel="stylesheet">
     </head>
     <body>
     <?php
