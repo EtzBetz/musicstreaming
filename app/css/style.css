@@ -1,14 +1,29 @@
 * {
-    box-sizing: border-box;
+    box-sizing: border-box;             /* Every element on the page is sized as a whole, with padding and margin */
+    margin: 0;                          /*                       ... has no margin */
+    font-family: 'Roboto', sans-serif;  /*                       ... has Roboto as Font by default */
 }
 
 body{
-    margin: 0;
-    display: flex;
+    display: flex;                      /* align all divs as column by default */
     flex-direction: column;
+    background-color: #fff;
 }
 
-.header.container, .footer.container{
+a {
+    font-weight: bolder;
+    color: #BDBDBD;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px;
+    transition-duration: .2s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+body > header, body > footer{
     display: flex;
     flex-direction: row;
     position: relative;
@@ -16,22 +31,36 @@ body{
     width: 100%;
 
     padding: 10px 16px;
-    background: #555;
+    background: #263238;
     color: #f1f1f1;
 }
 
-.header.container{
+body > header{
     position: fixed;
     flex-wrap: nowrap;
     justify-content: space-evenly;
     top: 0;
+
+    transition-duration: .2s;
 }
 
-.footer.container{
+header > div, footer > span{
+    margin: auto;
+}
+
+header + div, body > header{
+    height: 70px;
+}
+
+body > footer{
     flex-wrap: wrap;
     justify-content: center;
+    height: 70px
 }
 
-.main {
-    flex: 1 0 auto;
+.shrink{
+    height: 40px;
+}
+
+.content {
 }
