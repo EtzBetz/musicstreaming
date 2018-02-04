@@ -7,6 +7,20 @@
  */
 
 ?>
-<header class='header container' id='header_container'>
-    <span class='header title'>GW2Raider</span>
+<header class='' id='navbar'>
+    <div>
+        <span class=''>Blueprint</span>
+    </div>
+    <div>
+        <a href="register">Overview</a>
+        <a href="register">Manage</a>
+        <a href="register">Statistics</a>
+    </div>
+    <div>
+        <a href="register">Register</a>
+        <span>|</span>
+        <a href="login">Login</a>
+    </div>
 </header>
+
+<div></div>
