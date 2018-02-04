@@ -1,16 +1,16 @@
 * {
-    box-sizing: border-box;             /* Every element on the page is sized as a whole, with padding and margin */
-    margin: 0;                          /*                       ... has no margin */
-    font-family: 'Roboto', sans-serif;  /*                       ... has Roboto as Font by default */
+    box-sizing: border-box;                                 /* Every element on the page is sized as a whole, with padding and margin */
+    margin: 0;                                              /*                       ... has no margin */
+    font-family: 'Roboto', sans-serif;                      /*                       ... has Roboto as Font by default */
 }
 
 body{
-    display: flex;                      /* align all divs as column by default */
+    display: flex;                                          /* align all divs as column by default */
     flex-direction: column;
     background-color: #fff;
 }
 
-a {
+a {                                                         /* style for all default links */
     font-weight: bolder;
     color: #BDBDBD;
     text-transform: uppercase;
@@ -18,24 +18,22 @@ a {
     padding: 10px;
     transition-duration: .2s;
 }
-
 a:hover {
     color: #fff;
 }
 
-body > header, body > footer{
+body > header, body > footer{                               /* style for header and footer div */
     display: flex;
     flex-direction: row;
     position: relative;
     z-index: 999;
     width: 100%;
 
-    padding: 10px 16px;
     background: #263238;
     color: #f1f1f1;
 }
 
-body > header{
+body > header{                                              /* extra style for header that isn't wanted on footer */
     position: fixed;
     flex-wrap: nowrap;
     justify-content: space-evenly;
@@ -44,23 +42,39 @@ body > header{
     transition-duration: .2s;
 }
 
-header > div, footer > span{
-    margin: auto;
-}
-
-header + div, body > header{
-    height: 70px;
-}
-
-body > footer{
+body > footer{                                              /* extra style for footer that isn't wanted on header */
     flex-wrap: wrap;
     justify-content: center;
     height: 70px
 }
 
-.shrink{
+header > *, footer > *{                                     /* style for every element _within_ header and footer */
+    margin: auto 0 auto 0;
+}
+
+/* DO NOT CHANGE BELOW, THIS IS FOR SHRINKING HEADER */
+
+header + div, body > header{                                /* height for header and element after header */
+    height: 70px;
+}
+
+.shrink{                                                    /* this class gets assigned to header when scrolled 20px+ */
     height: 40px;
 }
 
+/* DO NOT CHANGE ABOVE, THIS IS FOR SHRINKING HEADER */
+
 .content {
+}
+
+/* LITTLE EXTRAS */
+
+.madeWithLove {
+    padding: 10px;
+    text-transform: uppercase;
+    color: #BDBDBD;
+}
+
+.heart {                                                    /* class for ascii heart "made with love by rav3n" */
+    color: #d4000d;
 }
