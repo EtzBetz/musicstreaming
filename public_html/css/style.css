@@ -10,6 +10,10 @@ body{
     background-color: #fff;
 }
 
+div {
+    display: flex;
+}
+
 a {                                                         /* style for all default links */
     font-weight: bolder;
     color: #BDBDBD;
@@ -65,11 +69,17 @@ header + div, body > header{                                /* height for header
 /* DO NOT CHANGE ABOVE, THIS IS FOR SHRINKING HEADER */
 
 .content {
+    flex-direction: column;
 }
 
 /* LITTLE EXTRAS */
 
-.madeWithLove {
+.seperator {
+    padding: 0 0 1px 0;
+    font-weight: bold;
+}
+
+.madeWithLove {                                             /* class for "made with love by rav3n" text */
     padding: 10px;
     text-transform: uppercase;
     color: #BDBDBD;
