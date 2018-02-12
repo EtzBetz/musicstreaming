@@ -16,7 +16,7 @@
             require_once(__DIR__ . "/register.php");
         }
     } else {
-        require_once(__DIR__ . "/../static/index.php");
+        require_once(__DIR__ . "/../static/main.php");
     }
     ?>
 </div>
