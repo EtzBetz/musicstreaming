@@ -62,7 +62,7 @@ header + div, body > header{                                /* height for header
     height: 70px;
 }
 
-.shrink{                                                    /* this class gets assigned to header when scrolled 20px+ */
+.shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
     height: 40px;
 }
 

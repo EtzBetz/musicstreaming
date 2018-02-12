@@ -9,7 +9,7 @@
 ?>
 <header class="" id="header">
     <div>
-        <a href="">GW2Raider</a>
+        <a href="<?php echo $config["urls"]["baseUrl"] ?>">GW2Raider</a>
     </div>
     <div>
         <a href="?p=overview">Overview</a>
