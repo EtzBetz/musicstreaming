@@ -14,16 +14,30 @@ div {
     display: flex;
 }
 
-a {                                                         /* style for all default links */
+a {
     font-weight: bolder;
-    color: #BDBDBD;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 10px;
     transition-duration: .2s;
+    cursor: pointer;
 }
-a:hover {
+
+a.light {                                                         /* style for all links, light style */
+    color: #BDBDBD;
+}
+a.light:hover {
     color: #fff;
+}
+
+a.dark {                                                         /* style for all links, light style */
+    color: #606060;
+}
+a.dark:hover {
+    color: #1e1e1e;
+}
+
+a.header, a.footer {
+    padding: 10px;
 }
 
 body > header, body > footer{                               /* style for header and footer div */
@@ -64,12 +78,85 @@ header + div, body > header{                                /* height for header
 
 .shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
     height: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.34);
 }
 
 /* DO NOT CHANGE ABOVE, THIS IS FOR SHRINKING HEADER */
 
 .content {
     flex-direction: column;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #9E9E9E;
+}
+.info > span {
+    margin: auto 15px;
+}
+.info > a {
+    padding: 20px 15px;
+    background: #757575;
+    color: #212121;
+}
+.info > a:hover {
+    background: #BDBDBD;
+}
+
+.info.green {
+    background: #8BC34A;
+}
+.info.green > a {
+    background: #7CB342;
+}
+.info.green > a:hover {
+    background: #9CCC65;
+}
+
+.info.yellow {
+    background: #FFEB3B;
+}
+.info.yellow > a {
+    background: #FDD835;
+}
+.info.yellow > a:hover {
+    background: #FFF176;
+}
+
+.info.orange {
+    background: #FF9800;
+}
+.info.orange > a {
+    background: #FB8C00;
+}
+.info.orange > a:hover {
+    background: #FFA726;
+}
+
+.info.red {
+    background: #F44336;
+}
+.info.red > a {
+    background: #E53935;
+}
+.info.red > a:hover {
+    background: #EF5350;
+}
+
+.info.blue {
+    background: #03A9F4;
+}
+.info.blue > a {
+    background: #039BE5;
+}
+.info.blue > a:hover {
+    background: #29B6F6;
 }
 
 /* LITTLE EXTRAS */

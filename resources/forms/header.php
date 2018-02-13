@@ -9,16 +9,16 @@
 ?>
 <header class="" id="header">
     <div>
-        <a href="<?php echo $config["urls"]["baseUrl"] ?>">GW2Raider</a>
+        <a class="header light" href="<?php echo $config["urls"]["baseUrl"] ?>">GW2Raider</a>
     </div>
     <div>
-        <a href="?p=overview">Overview</a>
-        <a href="?p=manage">Manage</a>
-        <a href="?p=statistics">Statistics</a>
+        <a class="header light" href="?p=overview">Overview</a>
+        <a class="header light" href="?p=manage">Manage</a>
+        <a class="header light" href="?p=statistics">Statistics</a>
     </div>
     <div>
-        <a href="?p=register">Register</a>
-        <a href="?p=login">Login</a>
+        <a class="header light" href="?p=register">Register</a>
+        <a class="header light" href="?p=login">Login</a>
     </div>
 </header>
 
