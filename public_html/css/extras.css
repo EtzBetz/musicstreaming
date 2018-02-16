@@ -1,0 +1,13 @@
+.madeWithLove { /* "made with love by rav3n" text in footer */
+    padding: 10px;
+    text-transform: uppercase;
+    color: #BDBDBD;
+}
+
+.heart { /* ascii heart "made with love by rav3n" in footer*/
+    color: #d4000d;
+    transform: scale(1.8, 1.5) translateY(-1px);
+    display: inline-block;
+    font-size: 8pt;
+    padding: 0px 3px;
+}

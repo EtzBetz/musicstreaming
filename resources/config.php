@@ -6,7 +6,7 @@
  * Time: 14:18
  */
 
-$config = array(
+$configArr = array(
     "db" => array(
         "db" => "gw2raider",
         "username" => "root",
@@ -14,7 +14,9 @@ $config = array(
         "host" => "localhost"
     ),
     "urls" => array(
-        "baseUrl" => "http://localhost/gw2raider/public_html"
+        "base" => "http://localhost/gw2raider/public_html",
+        "register" => "?p=register",
+        "login" => "?p=login"
     ),
     "strings" => array(
         "title" => "GW2Raider - Not a Raidar"
@@ -25,5 +27,3 @@ $config = array(
 
 ini_set("error_reporting", "true");
 error_reporting(E_ALL|E_STRCT);
-
-?>

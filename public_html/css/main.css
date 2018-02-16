@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;                /* every element on the page is sized as a whole, with padding and margin */
+    margin: 0;                             /*                       ... has no margin */
+    font-family: 'Roboto', sans-serif;     /*                       ... has Roboto as font by default */
+}
+
+html, body{
+    display: flex;                         /* align all divs as column by default */
+    flex-direction: column;
+    background-color: #263238;             /* backcolor for body, to color "overscroll" outside of the page */
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    background-color: #fff;
+}

@@ -1,0 +1,140 @@
+.infos { /* container for info cards */
+    display: flex;
+    flex-direction: column;
+}
+
+/* layout for cards, default color */
+
+.info { /* card div*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #455A64;
+    color: #fefefe;
+}
+.info:nth-child(odd) {
+    background: #37474F;
+}
+.info > span { /* card main text */
+    margin: 20px 15px;
+}
+.info > a { /* card hiding button */
+    padding: 20px 15px;
+    text-align: center;
+    min-width: fit-content;
+    background: #37474F;
+    color: #eeeeee;
+}
+.info:nth-child(odd) > a {
+    background: #2d3c43;
+}
+.info > a:hover {
+    background: #546E7A;
+}
+.info:nth-child(odd) > a:hover {
+    background: #455A64;
+}
+
+
+/* color variations for cards:
+ * main div:     500
+ * button:       600
+ * button hover: 400
+ *   odd items  +100
+ */
+
+
+.info.green {
+    background: #8BC34A;
+}
+.info.green:nth-child(odd) {
+    background: #7CB342;
+}
+.info.green > a {
+    background: #7CB342;
+}
+.info.green:nth-child(odd) > a {
+    background: #689F38;
+}
+.info.green > a:hover {
+    background: #9CCC65;
+}
+.info.green:nth-child(odd) > a:hover {
+    background: #8BC34A;
+}
+
+.info.yellow { /* every color +100 because yellow is bright already */
+    background: #FDD835;
+}
+.info.yellow:nth-child(odd) {
+    background: #FBC02D;
+}
+.info.yellow > a {
+    background: #FBC02D;
+}
+.info.yellow:nth-child(odd) > a {
+    background: #F9A825;
+}
+.info.yellow > a:hover {
+    background: #FFEE58;
+}
+.info.yellow:nth-child(odd) > a:hover {
+    background: #FFEB3B;
+}
+
+.info.orange {
+    background: #FF9800;
+}
+.info.orange:nth-child(odd) {
+    background: #FB8C00;
+}
+.info.orange > a {
+    background: #FB8C00;
+}
+.info.orange:nth-child(odd) > a {
+    background: #F57C00;
+}
+.info.orange > a:hover {
+    background: #FFA726;
+}
+.info.orange:nth-child(odd) > a:hover {
+    background: #FF9800;
+}
+
+.info.red {
+    background: #F44336;
+}
+.info.red:nth-child(odd) {
+    background: #E53935;
+}
+.info.red > a {
+    background: #E53935;
+}
+.info.red:nth-child(odd) > a {
+    background: #D32F2F;
+}
+.info.red > a:hover {
+    background: #EF5350;
+}
+.info.red:nth-child(odd) > a:hover {
+    background: #F44336;
+}
+
+.info.blue { /* light blue used here */
+    background: #03A9F4;
+}
+.info.blue:nth-child(odd) {
+    background: #039BE5;
+}
+.info.blue > a {
+    background: #039BE5;
+}
+.info.blue:nth-child(odd) > a {
+    background: #0288D1;
+}
+.info.blue > a:hover {
+    background: #29B6F6;
+}
+.info.blue:nth-child(odd) > a:hover {
+    background: #03A9F4;
+}

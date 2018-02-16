@@ -7,19 +7,38 @@
  */
 
 require_once(__DIR__ . "/../resources/config.php");
+require_once(__DIR__ . "/../resources/libs/smarty/Smarty.class.php");
+$smarty = new Smarty();
 
-echo   "<!DOCTYPE html>
-            <html lang='en'>
-                <head>
-                    <title>" . $config["strings"]["title"] . "</title>
-                    <link rel='stylesheet' href='./css/style.css'>
-                    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,600' rel='stylesheet'>
-                </head>
-                <body>";
-                    include_once(__DIR__ . "/../resources/forms/header.php");
-                    include_once(__DIR__ . "/../resources/forms/info.php");
-                    include_once(__DIR__ . "/../resources/forms/content.php");
-                    include_once(__DIR__ . "/../resources/forms/footer.php");
-echo           "</body>
-                <script src='./js/javascript.js'></script>
-            </html>";
+$smarty->setTemplateDir(__DIR__ . "/../resources/smarty/templates");
+$smarty->setCompileDir(__DIR__ . "/../resources/smarty/templates_c");
+$smarty->setCacheDir(__DIR__ . "/../resources/smarty/cache");
+$smarty->setConfigDir(__DIR__ . "/../resources/smarty/configs");
+
+
+$smarty->assign("configArr", $configArr);
+
+checkCookieAgreement($smarty);
+
+if (isset($_GET["p"])) {
+    switch ($_GET['p']) {
+        case "login":
+            $smarty->display('login.tpl');
+            break;
+        case "register":
+            $smarty->display('register.tpl');
+            break;
+        default:
+            $smarty->assign("page", $_GET["p"]);
+            $smarty->display('404.tpl');
+    }
+} else $smarty->display('index.tpl');
+
+
+function checkCookieAgreement($smarty) {
+    if(!isset($_COOKIE["cookiesAccepted"]) || (isset($_COOKIE["cookiesAccepted"]) && $_COOKIE["cookiesAccepted"] != 1)) {
+        $smarty->assign("infos", array(
+            array("mainText" => "This website uses cookies to ensure that you get the best experience.", "btnText" => "I don't care", "color" => "green"),
+        ));
+    }
+}

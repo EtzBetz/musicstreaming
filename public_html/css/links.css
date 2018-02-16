@@ -1,0 +1,30 @@
+a {
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition-duration: .2s;
+    cursor: pointer;
+}
+
+a.light { /* style for all links, light style */
+    color: #BDBDBD;
+}
+a.light:hover {
+    color: #fff;
+}
+
+a.dark { /* style for all links, light style */
+    color: #606060;
+}
+a.dark:hover {
+    color: #1e1e1e;
+}
+
+a.header, a.footer {
+    padding: 10px;
+}
+
+.seperator {
+    padding: 0 0 1px 0;
+    font-weight: bold;
+}
