@@ -11,6 +11,12 @@ html, body{
     height: 100%;
 }
 
+.container {
+    display: flex;                         /* align all divs as column by default */
+    flex-direction: column;
+    height: 100%;
+}
+
 .content {
     display: flex;
     flex-direction: column;

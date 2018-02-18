@@ -30,6 +30,6 @@
         </div>
     </header>
 
-    <div id="headerSpacer"></div> <!-- spacer for fixed header -->
-
+    <div id="headerSpacer"></div>
+    <div class="container">
     <div class="content">

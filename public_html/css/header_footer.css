@@ -35,6 +35,7 @@ header > .main > *, footer > .main > *{ /* style for every element _within_ main
 
 header + div , header > .main{                                /* height for header and element after header */
     height: 70px;
+    flex: 1 0 auto;
 }
 
 .shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
