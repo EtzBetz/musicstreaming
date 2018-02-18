@@ -17,8 +17,8 @@ $smarty->setConfigDir(__DIR__ . "/../resources/smarty/configs");
 
 
 $smarty->assign("configArr", $configArr);
-
 checkCookieAgreement($smarty);
+
 
 if (isset($_GET["p"])) {
     switch ($_GET['p']) {
