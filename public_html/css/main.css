@@ -40,8 +40,12 @@ html, body{
     justify-content: center;
 }
 
-.row.space10{
+.columnSpace10{
     height: 10px;
+}
+
+.columnSpace150{
+    height: 150px;
 }
 
 .column {
