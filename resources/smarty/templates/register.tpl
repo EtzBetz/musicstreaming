@@ -9,7 +9,7 @@
                 <input placeholder="Username" alt="Username" id="username" required>
                 <input placeholder="Password" type="password" alt="Password" id="password" required>
                 <div class="columnSpace10"></div>
-                <input type="button" value="Login">
+                <input type="button" value="Register">
             </form>
         </div>
     </div>
