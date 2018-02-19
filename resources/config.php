@@ -23,7 +23,7 @@ $configArr = array(
         "titleSeparator" => " | ",
         "groupName" => "Unknown",
         "titles" => array(
-            "index" => "not a Radar!",
+            "index" => "Not a Radar!",
             "login" => "Sign In",
             "register" => "Register"
         )
