@@ -21,5 +21,45 @@ html, body{
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
-    background-color: #fff;
+    background-color: #eee;
+}
+
+.card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.row.center {
+    justify-content: center;
+}
+
+.row.space10{
+    height: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.column.center {
+    justify-content: center;
+}
+
+.column.spaceFull {
+    flex: 1 0 auto;
+}
+
+.title {
+
+}
+
+.center {
+    text-align: center;
 }
