@@ -7,6 +7,7 @@
                 <div class="columnSpace10"></div>
                 <input placeholder="Username or E-Mail" alt="Username or E-Mail" id="username" required>
                 <input placeholder="Password" type="password" alt="Password" id="password" required>
+                <div class="columnSpace10"></div>
                 <input type="button" value="Login">
             </form>
         </div>
