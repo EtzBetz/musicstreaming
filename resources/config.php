@@ -19,7 +19,14 @@ $configArr = array(
         "login" => "?p=login"
     ),
     "strings" => array(
-        "title" => "GW2Raider - Not a Raidar"
+        "mainTitle" => "GW2Raider",
+        "titleSeparator" => " | ",
+        "groupName" => "Unknown",
+        "titles" => array(
+            "index" => "not a Radar!",
+            "login" => "Sign In",
+            "register" => "Register"
+        )
     )
 );
 

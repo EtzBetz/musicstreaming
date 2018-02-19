@@ -21,6 +21,7 @@ checkCookieAgreement($smarty);
 
 
 if (isset($_GET["p"])) {
+    $smarty->assign("page", $_GET["p"]);
     switch ($_GET['p']) {
         case "login":
             $smarty->display('login.tpl');
@@ -29,10 +30,12 @@ if (isset($_GET["p"])) {
             $smarty->display('register.tpl');
             break;
         default:
-            $smarty->assign("page", $_GET["p"]);
             $smarty->display('404.tpl');
     }
-} else $smarty->display('index.tpl');
+} else {
+    $smarty->assign("page", "index");
+    $smarty->display('index.tpl');
+}
 
 
 function checkCookieAgreement($smarty) {
