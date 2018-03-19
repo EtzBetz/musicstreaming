@@ -7,6 +7,7 @@
     <link rel='stylesheet' href='./css/links.css'>
     <link rel='stylesheet' href='./css/header_footer.css'>
     <link rel='stylesheet' href='./css/extras.css'>
+    <link rel='stylesheet' href='./css/cards.css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,600' rel='stylesheet'>
 </head>
 <body>
@@ -21,8 +22,13 @@
                 <a class="header light" href="?p=statistics">Statistics</a>
             </div>
             <div>
-                <a class="header light" href="{$configArr.urls.register}">Register</a>
-                <a class="header light" href="{$configArr.urls.login}">Login</a>
+                {if isset($username, $userId)}
+                    <a class="header light" href="{$configArr.urls.userDetails}{$userId}">Logged in as {$username}</a>
+                    <a class="header light" href="{$configArr.urls.logout}">Logout</a>
+                {else}
+                    <a class="header light" href="{$configArr.urls.register}">Register</a>
+                    <a class="header light" href="{$configArr.urls.login}">Login</a>
+                {/if}
             </div>
         </div>
         <div class="infos">
