@@ -13,10 +13,19 @@ $configArr = array(
         "password" => "root",
         "host" => "localhost"
     ),
+    "dbTest" => array(
+        "db" => "gw2raider",
+        "username" => "ibims",
+        "password" => "88c0ed80a9ee66477094",
+        "host" => "localhost"
+    ),
     "urls" => array(
         "base" => "http://localhost/gw2raider/public_html",
         "register" => "?p=register",
-        "login" => "?p=login"
+        "registering" => "?p=registering",
+        "login" => "?p=login",
+        "logging_in" => "?p=logging_in",
+        "logout" => "?p=logout"
     ),
     "strings" => array(
         "mainTitle" => "GW2Raider",
@@ -25,12 +34,16 @@ $configArr = array(
         "titles" => array(
             "index" => "Not a Radar!",
             "login" => "Sign In",
-            "register" => "Register"
+            "register" => "Register",
+            "registering" => "Registering..."
         )
     )
 );
 
-/* Error reporting */
 
-ini_set("error_reporting", "true");
-error_reporting(E_ALL|E_STRCT);
+
+
+define("CAN_REGISTER", "any");
+define("DEFAULT_ROLE", "member");
+
+define("SECURE", FALSE);

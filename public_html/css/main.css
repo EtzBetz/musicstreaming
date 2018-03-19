@@ -11,6 +11,8 @@ html, body{
     height: 100%;
 }
 
+textarea, input, button { outline: none; }
+
 .container {
     display: flex;                         /* align all divs as column by default */
     flex-direction: column;
@@ -21,14 +23,10 @@ html, body{
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
-    background-color: #eee;
 }
 
-.card {
-    background: #fff;
-    border-radius: 3px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.content, #headerSpacer {
+    background-color: #eee;
 }
 
 .row{
@@ -61,7 +59,7 @@ html, body{
 }
 
 .title {
-
+    font-size: 18pt;
 }
 
 .center {

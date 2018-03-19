@@ -1,0 +1,108 @@
+div.card {
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.15);
+}
+
+form > div{
+    margin: 10px 0;
+}
+
+
+form > div > label{
+    text-align: left;
+    font-size: 12pt;
+    padding-left: 6px;
+    color: #757575;
+}
+
+form > div > input{
+    text-align: left;
+    font-size: 14pt;
+    background-color: #fafafa;
+    border: none;
+    padding: 5px;
+    width: 300px;
+    transition: .2s ease-in-out;
+    background-position: right -15px center;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+}
+
+form > div > input:hover{
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09);
+}
+
+form > div > input:focus{
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09),inset 0 0 0 1px #0000001a;
+}
+
+form > div > input:valid{
+    background-position: right 10px center;
+}
+
+form > div > input:invalid:not(:focus):not(:placeholder-shown), form > div > input.notMatching:valid:not(:focus){
+    background-color: pink;
+    background-position: right -15px center;
+}
+
+form > div > input:invalid:focus:not(:placeholder-shown) + .warning{
+    max-height: 200px;
+    padding: 8px 8px;
+    border-radius: 0 0 7px 7px;
+}
+
+form > div > input#passwordRepeat.notMatching:invalid:focus:not(:placeholder-shown) + .warning{
+    border-radius: 0 0 0 0;
+}
+
+form > div > input::placeholder{
+    color: #ddd;
+    font-style: italic;
+    transition: .2s ease-in-out;
+}
+
+form > div > input:focus::placeholder{
+    color: #fafafa;
+}
+
+form > div > span.warning{
+    padding: 0 8px;
+    max-height: 0;
+    overflow: hidden;
+    transition: .2s ease-in-out;
+    background-color: pink;
+    text-wrap: normal;
+}
+
+form > div > input.notMatching + span.warning + span.warning{
+    max-height: 200px;
+    padding: 8px 8px;
+    border-radius: 0 0 7px 7px;
+}
+
+
+div > input:valid + div > button[type="submit"]{
+    border: 2px solid green;
+}
+
+
+form > div > button[type="submit"]{
+    font-size: 14pt;
+    width: 300px;
+    transition: .2s ease-in-out;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #ffffff00;
+    margin-top: 8px;
+    padding: 12px 0;
+    border: 2px solid #263238;
+}
+
+form > div > button[type="submit"]:hover{
+    box-shadow: none;
+    background-color: #8BC34A;
+    border-color: #8BC34A;
+    color: white;
+}
