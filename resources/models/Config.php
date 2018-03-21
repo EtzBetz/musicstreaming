@@ -12,13 +12,13 @@ class Config {
             "db" => "musicstreaming",
             "username" => "root",
             "password" => "root",
-            "host" => "localhost",
+            "host" => "127.0.0.1",
         ),
         "dbTest" => array(
             "db" => "musicstreaming",
             "username" => "ibims",
             "password" => "88c0ed80a9ee66477094",
-            "host" => "localhost",
+            "host" => "127.0.0.1",
         ),
         "urls" => array(
             "base" => "http://localhost/musicstreaming/public_html",
