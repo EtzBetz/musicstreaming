@@ -9,19 +9,19 @@
 class Config {
     const configArr = array(
         "db" => array(
-            "db" => "gw2raider",
+            "db" => "musicstreaming",
             "username" => "root",
             "password" => "root",
             "host" => "localhost"
         ),
         "dbTest" => array(
-            "db" => "gw2raider",
+            "db" => "musicstreaming",
             "username" => "ibims",
             "password" => "88c0ed80a9ee66477094",
             "host" => "localhost"
         ),
         "urls" => array(
-            "base" => "http://localhost/gw2raider/public_html",
+            "base" => "http://localhost/musicstreaming/public_html",
             "register" => "?p=register",
             "registering" => "?p=registering",
             "login" => "?p=login",
@@ -30,11 +30,11 @@ class Config {
             "user" => "?p=user"
         ),
         "strings" => array(
-            "mainTitle" => "GW2Raider",
+            "mainTitle" => "Music Streaming",
             "titleSeparator" => " | ",
             "groupName" => "Unknown",
             "titles" => array(
-                "index" => "Not a Radar!",
+                "index" => "Like a Lauch!",
                 "login" => "Sign In",
                 "register" => "Register",
                 "registering" => "Registering..."

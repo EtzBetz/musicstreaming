@@ -14,7 +14,7 @@
     <header id="headerContainer">
         <div class="main" id="header">
             <div>
-                <a class="header light" href="{$configArr.urls.base}">GW2Raider</a>
+                <a class="header light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
             </div>
             <div>
                 <a class="header light" href="?p=overview">Overview</a>
