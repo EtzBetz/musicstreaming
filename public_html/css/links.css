@@ -7,7 +7,7 @@ a {
 }
 
 a.light { /* style for all links, light style */
-    color: #BDBDBD;
+    color: #e3e3e3;
 }
 a.light:hover {
     color: #fff;
