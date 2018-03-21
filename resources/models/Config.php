@@ -12,13 +12,13 @@ class Config {
             "db" => "musicstreaming",
             "username" => "root",
             "password" => "root",
-            "host" => "localhost"
+            "host" => "localhost",
         ),
         "dbTest" => array(
             "db" => "musicstreaming",
             "username" => "ibims",
             "password" => "88c0ed80a9ee66477094",
-            "host" => "localhost"
+            "host" => "localhost",
         ),
         "urls" => array(
             "base" => "http://localhost/musicstreaming/public_html",
@@ -27,17 +27,31 @@ class Config {
             "login" => "?p=login",
             "logging_in" => "?p=logging_in",
             "logout" => "?p=logout",
-            "user" => "?p=user"
+            "user" => "?p=user",
+            "githubProject" => "https://github.com/derRAV3N/musicstreaming",
         ),
         "strings" => array(
             "mainTitle" => "Music Streaming",
             "titleSeparator" => " | ",
-            "groupName" => "Unknown",
+            "madeWithLove1" => "Made with ",
+            "madeWithLove2" => " by Qwatch GmbH",
+            "github" => "View this project on GitHub",
+            "loggedIn" => "Logged in as ",
+            "logout" => "Logout",
+            "register" => "Register",
+            "login" => "Login",
+            "alreadyLoggedIn" => "You are already logged in!",
+            "alreadyRegistered" => "You are already registered!",
+            "canLogoutHere" => "You can logout here",
+            "enterValidEmail" => "Enter a valid E-Mail address",
+            "enterValidAccountname" => "Enter a valid account name",
+            "passwordHint" => "Minimum 6 characters needed",
+            "passwordNotMatching" => "Passwords are not matching",
             "titles" => array(
                 "index" => "Like a Lauch!",
                 "login" => "Sign In",
                 "register" => "Register",
-                "registering" => "Registering..."
+                "registering" => "Registering...",
             ),
         ),
     );
