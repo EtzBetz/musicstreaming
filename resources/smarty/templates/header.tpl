@@ -23,11 +23,11 @@
             </div>
             <div>
                 {if isset($username, $userId)}
-                    <a class="header light" href="{$configArr.urls.userDetails}{$userId}">Logged in as {$username}</a>
-                    <a class="header light" href="{$configArr.urls.logout}">Logout</a>
+                    <a class="header light" href="{$configArr.urls.userDetails}{$userId}">{$configArr.strings.loggedInAs}{$username}</a>
+                    <a class="header light" href="{$configArr.urls.logout}">{$configArr.strings.logout}</a>
                 {else}
-                    <a class="header light" href="{$configArr.urls.register}">Register</a>
-                    <a class="header light" href="{$configArr.urls.login}">Login</a>
+                    <a class="header light" href="{$configArr.urls.register}">{$configArr.strings.register}</a>
+                    <a class="header light" href="{$configArr.urls.login}">{$configArr.strings.login}</a>
                 {/if}
             </div>
         </div>
