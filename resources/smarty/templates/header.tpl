@@ -14,12 +14,26 @@
     <header id="headerContainer">
         <div class="main" id="header">
             <div>
+                <img id="logo" src="./images/LauchLogo.jpg">
                 <a class="header light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
             </div>
             <div>
-                <a class="header light" href="?p=overview">Overview</a>
-                <a class="header light" href="?p=manage">Manage</a>
-                <a class="header light" href="?p=statistics">Statistics</a>
+                <div>
+                    <button class="header light dropbutton">Erstellen</button>
+                    <div class="dropdown">
+                        <a class="dark" href="#">Lied</a>
+                        <a class="dark" href="#">Album</a>
+                        <a class="dark" href="#">Playlist</a>
+                    </div>
+                </div>
+                <div>
+                    <button class="header light dropbutton">Favoriten</button>
+                    <div class="dropdown">
+                        <a class="dark" href="#">Lieder</a>
+                        <a class="dark" href="#">Alben</a>
+                        <a class="dark" href="#">Playlists</a>
+                    </div>
+                </div>
             </div>
             <div>
                 {if isset($username, $userId)}
@@ -36,6 +50,6 @@
         </div>
     </header>
 
-    <div id="headerSpacer"></div>
+    <div id="headerSpacer">&nbsp;</div>
     <div class="container">
     <div class="content">

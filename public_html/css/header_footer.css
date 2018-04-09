@@ -11,7 +11,6 @@ header > .main { /* main section of header -> navigation */
 
 footer > .main { /* main section of footer */
     flex-shrink: 0; /* don't change, this is for sticky footer! */
-    height: 50px;
 }
 
 header > .main, footer > .main { /* style for header and footer div */
@@ -27,20 +26,28 @@ header > .main, footer > .main { /* style for header and footer div */
     transition-duration: .2s;
 }
 
-header > .main > *, footer > .main > *{ /* style for every element _within_ main header and main footer */
-    margin: auto 0;
+header > .main > *, footer > .main > *, #headerSpacer{ /* style for every element _within_ main header and main footer */
+    margin: 15px 0;
+    transition-duration: .2s;
+    display: flex;
+}
+
+#headerSpacer {
+    white-space: pre;
 }
 
 /* THIS IS FOR SHRINKING HEADER */
 
 header + div , header > .main{                                /* height for header and element after header */
-    height: 70px;
     flex: 1 0 auto;
 }
 
 .shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
-    height: 40px !important;
     box-shadow: 0 2px 100px rgba(0, 0, 0, 0.33);
+}
+
+.shrink > div {
+    margin: 0;
 }
 
 /* THIS IS FOR SHRINKING HEADER */
