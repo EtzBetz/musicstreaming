@@ -1,3 +1,7 @@
+#logo {
+    height: 39px;
+}
+
 .madeWithLove { /* "made with love by rav3n" text in footer */
     padding: 10px;
     text-transform: uppercase;
