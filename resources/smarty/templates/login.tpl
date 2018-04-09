@@ -14,7 +14,8 @@
                         <span class="warning">{$configArr.strings.enterValidEmail}</span> {* TODO: change header info div css to div.info and change this to class="info" *}
                     </div>
                     <div class="column">
-                        <input placeholder="Password" type="password" alt="Password" id="password" name="password" required>
+                        <input placeholder="Password" type="password" alt="Password" id="password" name="password" minlength="6" required>
+                        <span class="warning">{$configArr.strings.passwordHint}</span>
                     </div>
                     <div class="column">
                         <button type="submit">Login</button>

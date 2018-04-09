@@ -15,7 +15,7 @@
                     </div>
                     <div class="column">
                         {*<label for="username" class="">Username:</label>*}
-                        <input class="register" placeholder="Username.1234" alt="Username.1234" id="username" name="username" pattern="[a-zA-Z]{ldelim}3,27{rdelim}\.[0-9]{ldelim}4{rdelim}" required>
+                        <input class="register" placeholder="Username" alt="Username" id="username" name="username" pattern="[a-zA-Z0-9]{ldelim}3,20{rdelim}" required>
                         <span class="warning">{$configArr.strings.enterValidAccountname}</span>
                     </div>
                     <div class="column">

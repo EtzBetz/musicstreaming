@@ -5,7 +5,7 @@ div.card {
 }
 
 form > div{
-    margin: 10px 0;
+    margin: 10px 0 10px 0;
 }
 
 
@@ -72,7 +72,7 @@ form > div > span.warning{
     max-height: 0;
     overflow: hidden;
     transition: .2s ease-in-out;
-    background-color: pink;
+    background-color: #0000001a;
     text-wrap: normal;
 }
 
@@ -91,13 +91,14 @@ div > input:valid + div > button[type="submit"]{
 form > div > button[type="submit"]{
     font-size: 14pt;
     width: 300px;
-    transition: .2s ease-in-out;
+    transition: .1s ease-in-out;
     text-align: center;
     text-transform: uppercase;
     background-color: #ffffff00;
     margin-top: 8px;
     padding: 12px 0;
     border: 2px solid #263238;
+    letter-spacing: 1px;
 }
 
 form > div > button[type="submit"]:hover{
