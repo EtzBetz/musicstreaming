@@ -73,6 +73,7 @@ div.dropdown > a {
     margin: 0 10px;
     text-align: center;
     border-bottom: #0000001c 1px solid;
+    font-weight: 400;
 }
 
 div.dropdown > a:first-child {
