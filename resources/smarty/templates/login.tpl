@@ -7,18 +7,18 @@
                 <a class="title center" href="{$configArr.urls.logout}">{$configArr.strings.canLogoutHere}</a>
             {else}
                 <form action="{$configArr.urls.logging_in}" method="post" class="column">
-                    <p class="title center">Sign In</p>
+                    <p class="title center">{$configArr.strings.login}</p>
                     <div class="columnSpace10"></div>
                     <div class="column">
-                        <input class="register" placeholder="E-Mail" type="email" alt="E-Mail" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{ldelim}2,4{rdelim}$" required>
+                        <input class="register" placeholder="{$configArr.strings.email}" type="email" alt="{$configArr.strings.email}" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{ldelim}2,4{rdelim}$" required>
                         <span class="warning">{$configArr.strings.enterValidEmail}</span> {* TODO: change header info div css to div.info and change this to class="info" *}
                     </div>
                     <div class="column">
-                        <input placeholder="Password" type="password" alt="Password" id="password" name="password" minlength="6" required>
+                        <input placeholder="{$configArr.strings.password}" type="password" alt="{$configArr.strings.password}" id="password" name="password" minlength="6" required>
                         <span class="warning">{$configArr.strings.passwordHint}</span>
                     </div>
                     <div class="column">
-                        <button type="submit">Login</button>
+                        <button type="submit">{$configArr.strings.login}</button>
                     </div>
                 </form>
             {/if}

@@ -19,19 +19,19 @@
             </div>
             <div>
                 <div>
-                    <button class="header light dropbutton">Erstellen</button>
+                    <button class="header light dropbutton">{$configArr.strings.addContent}</button>
                     <div class="dropdown">
-                        <a class="dark" href="#">Lied</a>
-                        <a class="dark" href="#">Album</a>
-                        <a class="dark" href="#">Playlist</a>
+                        <a class="dark" href="#">{$configArr.strings.uploadMusic}</a>
+                        <a class="dark" href="#">{$configArr.strings.createAlbum}</a>
+                        <a class="dark" href="#">{$configArr.strings.createPlaylist}</a>
                     </div>
                 </div>
                 <div>
-                    <button class="header light dropbutton">Favoriten</button>
+                    <button class="header light dropbutton">{$configArr.strings.favorites}</button>
                     <div class="dropdown">
-                        <a class="dark" href="#">Lieder</a>
-                        <a class="dark" href="#">Alben</a>
-                        <a class="dark" href="#">Playlists</a>
+                        <a class="dark" href="#">{$configArr.strings.musictitles}</a>
+                        <a class="dark" href="#">{$configArr.strings.albums}</a>
+                        <a class="dark" href="#">{$configArr.strings.playlists}</a>
                     </div>
                 </div>
             </div>
