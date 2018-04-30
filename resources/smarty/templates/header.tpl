@@ -37,22 +37,8 @@
             </div>
             <div>
                 {if isset($username, $userId)}
-                    <a class="header light" href="{$configArr.urls.user}&id={$userId}">
-                        <div class="svg-icon svg-baseline icon-account">
-                            <svg viewBox="0 0 24 24">
-                                <path d=""/>
-                            </svg>
-                        </div>
-                        {$username}
-                    </a>
-                    <a class="header light" href="{$configArr.urls.logout}">
-                        <div class="svg-icon svg-baseline icon-logout">
-                            <svg viewBox="0 0 24 24">
-                                <path d=""/>
-                            </svg>
-                        </div>
-                        {$configArr.strings.logout}
-                    </a>
+                    <a class="header light svg-icon svg-baseline icon--account--light" href="{$configArr.urls.user}&id={$userId}">{$username}</a>
+                    <a class="header light svg-icon svg-baseline icon--logout--light" href="{$configArr.urls.logout}">{$configArr.strings.logout}</a>
                 {else}
                     <a class="header light" href="{$configArr.urls.register}">{$configArr.strings.register}</a>
                     <a class="header light" href="{$configArr.urls.login}">{$configArr.strings.login}</a>
