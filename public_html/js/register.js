@@ -31,12 +31,12 @@ function validateForm() {
     var passwordRepeatInput = document.getElementById("passwordRepeat");
 
     var reEmail = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
-    var reUsername = new RegExp("[a-zA-Z]{3,27}\\.[0-9]{4}");
+    var reUsername = new RegExp("[a-zA-Z0-9]{3,20}");
 
     if (reEmail.test(emailInput.value) && reUsername.test(usernameInput.value) && passwordInput.value.length >= 6 && checkMatchingPasswords(passwordInput, passwordRepeatInput)) {
         return true;
     } else {
-        alert(reUsername.test(usernameInput.value) + "Input validation failed. If you're sure that you did everything right, contact us please.");
+        alert("(" . reUsername.test(usernameInput.value) + ") Input validation failed. If you're sure that you did everything right, contact us please.");
         return false;
     }
 }

@@ -26,7 +26,7 @@ class DBConnect {
     }
 
     public static function getUserAttributes($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT user.id, user.email, user.username, user.password, user.salt, user.mainAccountId, user.groupId, user.created FROM user WHERE user.id = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT user.id, user.email, user.username, user.password, user.salt, user.created FROM user WHERE user.id = :id");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -40,9 +40,7 @@ class DBConnect {
                     "username"      => $row['username'],
                     "password"      => $row['password'],
                     "salt"          => $row['salt'],
-                    "mainAccountId" => $row['mainAccountId'],
-                    "groupId"       => $row['groupId'],
-                    "created"       => $row['created']
+                    "created"       => $row['created'],
                 );
             }
         }
@@ -61,7 +59,7 @@ class DBConnect {
                     "id"      => $row['id'],
                     "userId"  => $row['userId'],
                     "favored" => $row['favored'],
-                    "apiKey"  => $row['apiKey']
+                    "apiKey"  => $row['apiKey'],
                 );
             }
         }
@@ -119,13 +117,11 @@ class DBConnect {
 
 
     public static function insertUser($email, $username, $password, $salt) {
-        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO user(email, username, password, salt, groupId, created) VALUES(:email, :username, :password, :salt, :groupId, :created)");
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO user(email, username, password, salt, created) VALUES(:email, :username, :password, :salt, :created)");
         $query->bindParam(":email", $email);
         $query->bindParam(":username", $username);
         $query->bindParam(":password", $password);
         $query->bindParam(":salt", $salt);
-        $groupId = 1;
-        $query->bindParam(':groupId', $groupId); // TODO: add setting for starter-groupId
         $time = new DateTime();
         $time = $time->format("Y-m-d H:i:s");
         $query->bindParam(":created", $time);
@@ -177,8 +173,6 @@ class DBConnect {
     }
 
     public static function getLastCreatedAccountId() {
-
-
-        $recipeId = $pdo->lastInsertId();
+        return DBConnect::getInstance()->connection->lastInsertId();
     }
 }

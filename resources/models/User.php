@@ -12,9 +12,6 @@ class User {
     private $username;
     private $password;
     private $salt;
-    private $mainAccountId;
-    private $accountIds;
-    private $groupId;
     private $created;
 
     /**
@@ -34,9 +31,6 @@ class User {
                 case "username":
                     $this->username = $id;
                     break;
-                case "accountId":
-                    $this->accountIds = array($id);
-                    break;
             }
             $this->fillAttributes();
         }
@@ -49,10 +43,6 @@ class User {
             $this->setId(DBConnect::getUserIdFromEmail($this->email));
         } elseif (isset($this->username)) {
             $this->setId(DBConnect::getUserIdFromUsername($this->username));
-        } elseif (isset($this->mainAccountId)) {
-            $this->setId(DBConnect::getUserIdFromAccountId($this->mainAccountId));
-        } elseif (isset($this->accountIds)) {
-            $this->setId(DBConnect::getUserIdFromAccountId($this->accountIds[0]));
         }
         if (isset($this->id)) {
             $userAttributes = DBConnect::getUserAttributes($this->id);
@@ -60,10 +50,7 @@ class User {
             $this->setUsername($userAttributes['username']);
             $this->setPassword($userAttributes['password']);
             $this->setSalt($userAttributes['salt']);
-            $this->setMainAccountId($userAttributes['mainAccountId']);
-            $this->setGroupId($userAttributes['groupId']);
             $this->setCreated($userAttributes['created']);
-            $this->setAccountIds(DBConnect::getAccountIdsFromUserId($this->id));
         }
     }
 
@@ -135,48 +122,6 @@ class User {
      */
     public function setSalt($salt) {
         $this->salt = $salt;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMainAccountId() {
-        return $this->mainAccountId;
-    }
-
-    /**
-     * @param int $mainAccountId
-     */
-    public function setMainAccountId($mainAccountId) {
-        $this->mainAccountId = $mainAccountId;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAccountIds() {
-        return $this->accountIds;
-    }
-
-    /**
-     * @param array $accountIds
-     */
-    public function setAccountIds($accountIds) {
-        $this->accountIds = $accountIds;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGroupId() {
-        return $this->groupId;
-    }
-
-    /**
-     * @param int $groupId
-     */
-    public function setGroupId($groupId) {
-        $this->groupId = $groupId;
     }
 
     /**
