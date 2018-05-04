@@ -22,10 +22,10 @@
 
 @keyframes heartBeat {
     0%,100% {
-        transform: scale(1.8, 1.5) translateY(-1px);
+        transform: translateY(-1px) scale(1.8, 1.5);
     }
 
     50% {
-        transform: scale(2.4, 2.0) translateY(-1px);
+        transform: translateY(-1px) scale(2.4, 2.0);
     }
 }
