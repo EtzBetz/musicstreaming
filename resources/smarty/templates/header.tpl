@@ -15,11 +15,11 @@
         <div class="main" id="header">
             <div>
                 <img id="logo" src="./images/LauchLogo.jpg">
-                <a class="header light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
+                <a class="header light svg-icon svg-baseline icon--music_circle--light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
             </div>
             <div>
                 <div>
-                    <button class="header light dropbutton">{$configArr.strings.addContent}</button>
+                    <button class="header light dropbutton svg-icon svg-baseline icon--plus_circle--light">{$configArr.strings.addContent}</button>
                     <div class="dropdown">
                         <a class="dark" href="#">{$configArr.strings.uploadMusic}</a>
                         <a class="dark" href="#">{$configArr.strings.createAlbum}</a>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="header light dropbutton">{$configArr.strings.favorites}</button>
+                    <button class="header light dropbutton svg-icon svg-baseline icon--star_circle--light">{$configArr.strings.favorites}</button>
                     <div class="dropdown">
                         <a class="dark" href="#">{$configArr.strings.musictitles}</a>
                         <a class="dark" href="#">{$configArr.strings.albums}</a>
@@ -40,8 +40,8 @@
                     <a class="header light svg-icon svg-baseline icon--account--light" href="{$configArr.urls.user}&id={$userId}">{$username}</a>
                     <a class="header light svg-icon svg-baseline icon--logout--light" href="{$configArr.urls.logout}">{$configArr.strings.logout}</a>
                 {else}
-                    <a class="header light" href="{$configArr.urls.register}">{$configArr.strings.register}</a>
-                    <a class="header light" href="{$configArr.urls.login}">{$configArr.strings.login}</a>
+                    <a class="header light svg-icon svg-baseline icon--account_plus--light" href="{$configArr.urls.register}">{$configArr.strings.register}</a>
+                    <a class="header light svg-icon svg-baseline icon--login--light" href="{$configArr.urls.login}">{$configArr.strings.login}</a>
                 {/if}
             </div>
         </div>
