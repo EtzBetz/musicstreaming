@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <title>{$configArr.strings.mainTitle}{$configArr.strings.titleSeparator}{$configArr.strings.titles.{$page}}</title>
+    <title>{$configArr.strings.mainTitle}{$configArr.strings.titleSeparator}{$configArr.strings.titles.{$page}}</title>{* TODO: add variable titles for f.e. songnames*}
     <link rel='stylesheet' href='./css/main.css'>
     <link rel='stylesheet' href='./css/info.css'>
     <link rel='stylesheet' href='./css/links.css'>
