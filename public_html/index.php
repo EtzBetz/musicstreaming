@@ -59,6 +59,14 @@ if (isset($_GET["p"])) {
             }
             $smarty->display('song.tpl');
             break;
+        case "artist":
+            require_once(__DIR__ . "/../resources/models/Artist.php");
+            if (isset($_GET["id"])) {
+                $artist = new Artist($_GET["id"]);
+                $smarty->assign("artist", $artist);
+            }
+            $smarty->display('artist.tpl');
+            break;
         default:
             $smarty->display('404.tpl');
     }
