@@ -14,7 +14,7 @@
     <header id="headerContainer">
         <div class="main" id="header">
             <div>
-                <img id="logo" src="./images/LauchLogo.jpg">
+                <!--<img id="logo" src="./images/LauchLogo.jpg">-->
                 <a class="header light svg-icon svg-baseline icon--music_circle--light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
             </div>
             <div>
