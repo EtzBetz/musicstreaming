@@ -84,15 +84,6 @@ class DBConnect {
                 $data = array(
                     "id"        => $row['id'],
                     "name"      => $row['name'],
-                    "filename"  => $row['filename'],
-                    "visits"    => $row['visits'],
-                    "created"   => $row['created'],
-                    "userId"    => $row['userid'],
-                    "artistId"  => $row['artistid'],
-                    "genreId"   => $row['genreid'],
-                    "songtextId"=> $row['songtextid'],
-                    "coverId"   => $row['coverid'],
-                    "albumId"   => $row['albumid'],
                 );
             }
         }
