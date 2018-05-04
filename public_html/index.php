@@ -54,11 +54,14 @@ if (isset($_GET["p"])) {
         case "song":
             require_once(__DIR__ . "/../resources/models/Song.php");
             require_once(__DIR__ . "/../resources/models/Artist.php");
+            require_once(__DIR__ . "/../resources/models/User.php");
             if (isset($_GET["id"])) {
                 $song = new Song($_GET["id"]);
                 $artist = new Artist($song->getArtistId());
+                $user = new User($song->getUserId());
                 $smarty->assign("song", $song);
                 $smarty->assign("artist", $artist);
+                $smarty->assign("user", $user);
             }
             $smarty->display('song.tpl');
             break;
