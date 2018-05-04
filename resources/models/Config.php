@@ -58,7 +58,7 @@ class Config {
             "uploadMusic" => "Musik hochladen",
             "createAlbum" => "Album erstellen",
             "createPlaylist" => "Playlist erstellen",
-            "favorites" => "Favoriten (coming soon)",
+            "favorites" => "Favoriten (coming never)",
             "musictitles" => "Musiktitel",
             "albums" => "Alben",
             "playlists" => "Playlists",
