@@ -80,13 +80,14 @@ a.header, a.footer, button.header, button.footer, #headerSpacer {
 .svg-icon::before {
     display: inline-flex;
     align-self: center;
-    padding-right: 6px;
+    padding-right: 5px;
     height: 1em;
     width: 1em;
+    transform: scale(1.4);
  }
 
 .svg-icon.svg-baseline::before {
-    top: -0.16em;
+    top: -0.01em;
     position: relative;
 }
 
