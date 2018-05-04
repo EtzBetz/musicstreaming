@@ -51,6 +51,14 @@ if (isset($_GET["p"])) {
         case "logout":
             require_once(__DIR__ . "/../resources/helpers/logout.php");
             break;
+        case "song":
+            require_once(__DIR__ . "/../resources/models/Song.php");
+            if (isset($_GET["id"])) {
+                $song = new Song($_GET["id"]);
+                $smarty->assign("song", $song);
+            }
+            $smarty->display('song.tpl');
+            break;
         default:
             $smarty->display('404.tpl');
     }
