@@ -21,7 +21,7 @@ class DBConnect {
     private $connection = null;
 
     private function __construct() {
-        $this->connection = new PDO('mysql:host='. Config::configArr['db']['host'] .';dbname='. Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')); // TODO: Put connect data in config.php
+        $this->connection = new PDO('mysql:host='. Config::configArr['db']['host'] .';dbname='. Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')); // TODO: Put connect data in Config.php
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -35,7 +35,7 @@ class DBConnect {
         if($query->rowCount() == 1) {
             while ($row = $query->fetch()) {
                 $data = array(
-                    "id "           => $row['id'],
+                    "id"           => $row['id'],
                     "email"         => $row['email'],
                     "username"      => $row['username'],
                     "password"      => $row['password'],
@@ -46,8 +46,8 @@ class DBConnect {
         }
         return $data;
     }
-    public static function getAccountAttributes($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT account.id, account.userId, account.favored, account.apiKey FROM account WHERE account.userId = :id");
+    public static function getSongAttributes($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name, song.filename, song.visits, song.created, song.userid, song.artistid, song.genreid, song.songtextid, song.coverid, song.albumid FROM song WHERE song.id = :id");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -56,14 +56,46 @@ class DBConnect {
         if($query->rowCount() == 1) {
             while ($row = $query->fetch()) {
                 $data = array(
-                    "id"      => $row['id'],
-                    "userId"  => $row['userId'],
-                    "favored" => $row['favored'],
-                    "apiKey"  => $row['apiKey'],
+                    "id"        => $row['id'],
+                    "name"      => $row['name'],
+                    "filename"  => $row['filename'],
+                    "visits"    => $row['visits'],
+                    "created"   => $row['created'],
+                    "userId"    => $row['userid'],
+                    "artistId"  => $row['artistid'],
+                    "genreId"   => $row['genreid'],
+                    "songtextId"=> $row['songtextid'],
+                    "coverId"   => $row['coverid'],
+                    "albumId"   => $row['albumid'],
                 );
             }
         }
+        return $data;
+    }
+    public static function getArtistAttributes($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT artist.id, artist.name FROM artist WHERE artist.id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
 
+        $data = null;
+
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $data = array(
+                    "id"        => $row['id'],
+                    "name"      => $row['name'],
+                    "filename"  => $row['filename'],
+                    "visits"    => $row['visits'],
+                    "created"   => $row['created'],
+                    "userId"    => $row['userid'],
+                    "artistId"  => $row['artistid'],
+                    "genreId"   => $row['genreid'],
+                    "songtextId"=> $row['songtextid'],
+                    "coverId"   => $row['coverid'],
+                    "albumId"   => $row['albumid'],
+                );
+            }
+        }
         return $data;
     }
 
@@ -88,30 +120,6 @@ class DBConnect {
             while ($row = $query->fetch()) {
                 return($row['id']);
             }
-        }
-    }
-    public static function getUserIdFromAccountId($accountId) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT account.userId FROM account WHERE account.id = :accountId");
-        $query->bindParam(":accountId", $accountId);
-        $query->execute();
-
-        if($query->rowCount() == 1) {
-            while ($row = $query->fetch()) {
-                return($row['id']);
-            }
-        }
-    }
-    public static function getAccountIdsFromUserId($userId) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT account.id FROM account WHERE account.userId = :userId");
-        $query->bindParam(":userId", $userId);
-        $query->execute();
-
-        if($query->rowCount() > 0) {
-            $data = array();
-            while ($row = $query->fetch()) {
-                $data[] = ($row['id']);
-            }
-            return $data;
         }
     }
 
@@ -143,6 +151,8 @@ class DBConnect {
     }
 
 
+
+
     public static function getNumberOfLoginAttempts($userId, DateTime $timeSpan) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT failedLogin.id, failedLogin.userId, failedLogin.time FROM failedLogin WHERE failedLogin.userId = :userId AND failedLogin.time > :timeSpan");
         $query->bindParam(":userId", $userId);
@@ -171,6 +181,7 @@ class DBConnect {
         } else
             return true;
     }
+
 
     public static function getLastCreatedAccountId() {
         return DBConnect::getInstance()->connection->lastInsertId();
