@@ -43,7 +43,7 @@ header + div , header > .main{                                /* height for head
 }
 
 .shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
-    box-shadow: 0 2px 100px rgba(0, 0, 0, 0.33);
+    box-shadow: 0 2px 50px rgba(23, 58, 0, 0.3);
 }
 
 .shrink > div {
