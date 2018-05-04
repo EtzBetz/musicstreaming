@@ -7,9 +7,10 @@
                 <p class="title center">von <a class="title" href="{$configArr.urls.artist}&{$configArr.urls.id}{$artist->getId()}">{$artist->getName()}</a></p>
                 <p class="title center">{$song->getVisits()} Aufrufe</p>
                 <p class="title center">Am {$song->getCreated()} von <a class="title" href="{$configArr.urls.user}&{$configArr.urls.id}{$user->getId()}">{$user->getUsername()}</a> hochgeladen</p>
-                <p class="title center">Genre: {$song->getGenreId()}</p>
-                <p class="title center">Songtext: {$song->getSongtextId()}</p>
-                <p class="title center">{$song->getCoverId()}</p>
+                <p class="title center">Genre: {$song->getGenre()}</p>
+                <p class="title center">Songtext:</p>
+                <p class="title center">{$song->getSongtext()}</p>
+                <p class="title center">{$song->getCover()}</p>
                 <p class="title center">{$song->getAlbumId()}</p>
             {else}
                 <p class="title center">Interner Fehler.</p>

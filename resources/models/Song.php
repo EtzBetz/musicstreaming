@@ -15,8 +15,11 @@ class Song {
     protected $userId;
     protected $artistId;
     protected $genreId;
+    protected $genre;
     protected $songtextId;
+    protected $songtext;
     protected $coverId;
+    protected $cover;
     protected $albumId;
 
     /**
@@ -35,8 +38,11 @@ class Song {
         $this->userId = $data["userId"];
         $this->artistId = $data["artistId"];
         $this->genreId = $data["genreId"];
+        $this->genre = $data["genre"];
         $this->songtextId = $data["songtextId"];
+        $this->songtext = nl2br($data["songtext"]);
         $this->coverId = $data["coverId"];
+        $this->cover = $data["cover"];
         $this->albumId = $data["albumId"];
     }
 
@@ -148,6 +154,20 @@ class Song {
     /**
      * @return mixed
      */
+    public function getGenre() {
+        return $this->genre;
+    }
+
+    /**
+     * @param mixed $genre
+     */
+    public function setGenre($genre) {
+        $this->genre = $genre;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getSongtextId() {
         return $this->songtextId;
     }
@@ -162,6 +182,20 @@ class Song {
     /**
      * @return mixed
      */
+    public function getSongtext() {
+        return $this->songtext;
+    }
+
+    /**
+     * @param mixed $songtext
+     */
+    public function setSongtext($songtext) {
+        $this->songtext = $songtext;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCoverId() {
         return $this->coverId;
     }
@@ -171,6 +205,20 @@ class Song {
      */
     public function setCoverId($coverId) {
         $this->coverId = $coverId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCover() {
+        return $this->cover;
+    }
+
+    /**
+     * @param mixed $cover
+     */
+    public function setCover($cover) {
+        $this->cover = $cover;
     }
 
     /**
