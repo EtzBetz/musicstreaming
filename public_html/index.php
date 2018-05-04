@@ -70,6 +70,14 @@ if (isset($_GET["p"])) {
             }
             $smarty->display('artist.tpl');
             break;
+        case "user":
+            require_once(__DIR__ . "/../resources/models/User.php");
+            if (isset($_GET["id"])) {
+                $user = new User($_GET["id"]);
+                $smarty->assign("user", $user);
+            }
+            $smarty->display('user.tpl');
+            break;
         default:
             $smarty->display('404.tpl');
     }

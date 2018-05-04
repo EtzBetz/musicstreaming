@@ -19,18 +19,22 @@ class User {
      * @param $id     [null, int]
      * @param $idType [null,"id","email","username","accountId"]
      */
-    public function __construct($id = null, $idType = null) {
-        if (isset($idType) && isset($id)) {
-            switch ($idType) {
-                case "id":
-                    $this->id = $id;
-                    break;
-                case "email":
-                    $this->email = $id;
-                    break;
-                case "username":
-                    $this->username = $id;
-                    break;
+    public function __construct($id, $idType = null) {
+        if (isset($id)) {
+            if (isset($idType)) {
+                switch ($idType) {
+                    case "id":
+                        $this->id = $id;
+                        break;
+                    case "email":
+                        $this->email = $id;
+                        break;
+                    case "username":
+                        $this->username = $id;
+                        break;
+                }
+            } else {
+                $this->id = $id;
             }
             $this->fillAttributes();
         }
@@ -64,7 +68,7 @@ class User {
     /**
      * @param int $id
      */
-    public function setId($id) {
+    protected function setId($id) {
         $this->id = $id;
     }
 
