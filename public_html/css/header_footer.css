@@ -1,4 +1,5 @@
-header { /* layout for header (contains navigation header and also info cards!) */
+/* layout for header (contains navigation header and also info cards!) */
+header {
     position: fixed;
     top: 0;
     width: 100%;
@@ -6,14 +7,8 @@ header { /* layout for header (contains navigation header and also info cards!) 
     flex-direction: column;
 }
 
-header > .main { /* main section of header -> navigation */
-}
-
-footer > .main { /* main section of footer */
-    flex-shrink: 0; /* don't change, this is for sticky footer! */
-}
-
-header > .main, footer > .main { /* style for header and footer div */
+/* style for header and footer div */
+.header__navigation, .footer__main {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -26,28 +21,38 @@ header > .main, footer > .main { /* style for header and footer div */
     transition-duration: .2s;
 }
 
-header > .main > *, footer > .main > *, #headerSpacer{ /* style for every element _within_ main header and main footer */
+/* navigation/main header */
+.header__navigation {
+}
+
+/* main section of footer */
+.footer__main {
+    flex-shrink: 0; /* don't change, this is for sticky footer! */
+}
+
+/* style for every element _within_ main header and main footer */
+.header__navigation > *, .footer__main > *, #header__spacer {
     margin: 15px 0;
     transition-duration: .2s;
     display: flex;
 }
 
-#headerSpacer {
+#header__spacer {
     white-space: pre;
 }
 
 /* THIS IS FOR SHRINKING HEADER */
 
-header + div , header > .main{                                /* height for header and element after header */
+/* height for header and element after header */
+#header__spacer, .header__navigation{
     flex: 1 0 auto;
 }
 
-.shrink{                                                    /* this class gets assigned to header when scrolled 20+px */
+/* this class gets assigned to header when scrolled 20+px */
+.js-header__navigation--shrink{
     box-shadow: 0 2px 50px rgba(23, 58, 0, 0.3);
 }
 
-.shrink > div {
+.js-header__navigation--shrink > div {
     margin: 0;
 }
-
-/* THIS IS FOR SHRINKING HEADER */

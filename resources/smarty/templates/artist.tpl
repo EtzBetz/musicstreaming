@@ -1,12 +1,12 @@
 {include file="header.tpl"}
-<div class="column center spaceFull">
-    <div class="row center">
+<div class="content--set-column content--center-align div--flex-full">
+    <div class="content--set-row content--center-align">
         <div class="card">
             {if isset($artist)}
-                <p class="title center">{$artist->getName()}</p>
+                <p class="text--title content--center-align">{$artist->getName()}</p>
                 {* TODO: add songs, albums (and playlists?) of artist *}
             {else}
-                <p class="title center">Interner Fehler.</p>
+                <p class="text--title content--center-align">Interner Fehler.</p>
             {/if}
         </div>
     </div>

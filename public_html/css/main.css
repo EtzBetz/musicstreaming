@@ -7,14 +7,16 @@
 html, body{
     display: flex;                         /* align all divs as column by default */
     flex-direction: column;
-    background-color: #eee;             /* backcolor for body, to color "overscroll" outside of the page */
+    background-color: #eee;                /* backcolor for body, to color "overscroll" outside of the page */
     height: 100%;
 }
 
-textarea, input, button { outline: none; }
+textarea, input, button {
+    outline: none;
+}
 
 .container {
-    display: flex;                         /* align all divs as column by default */
+    display: flex;
     flex-direction: column;
     height: 100%;
 }
@@ -25,43 +27,39 @@ textarea, input, button { outline: none; }
     flex: 1 0 auto;
 }
 
-.content, #headerSpacer {
+.content, #header__spacer {
     background-color: #eee;
 }
 
-.row{
+.content--set-row{
     display: flex;
     flex-direction: row;
 }
 
-.row.center {
-    justify-content: center;
-}
-
-.columnSpace10{
-    height: 10px;
-}
-
-.columnSpace150{
-    height: 150px;
-}
-
-.column {
+.content--set-column {
     display: flex;
     flex-direction: column;
 }
-.column.center {
+
+.content--center-align {
     justify-content: center;
+    text-align: center;
 }
 
-.column.spaceFull {
+.content--left-align {
+    justify-content: left;
+    text-align: left;
+}
+
+.content--right-align {
+    justify-content: right;
+    text-align: right;
+}
+
+.div--flex-full {
     flex: 1 0 auto;
 }
 
-.title {
+.text--title {
     font-size: 18pt;
-}
-
-.center {
-    text-align: center;
 }

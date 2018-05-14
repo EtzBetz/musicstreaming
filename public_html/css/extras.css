@@ -1,26 +1,26 @@
-#logo {
+.header__logo {
     height: 39px;
 }
 
-.madeWithLove { /* "made with love by rav3n" text in footer */
+.footer__made-with-love { /* "made with love by ..." text in footer TODO: GENERALIZE STYLE FOR TEXT IN HEADER */
     padding: 10px;
     text-transform: uppercase;
     color: #e3e3e3;
 }
 
-.heart { /* ascii heart "made with love by rav3n" in footer*/
+.footer__made-with-love__heart { /* ascii heart "made with love by ..." in footer*/
     color: #d4000d;
     transform: scale(1.8, 1.5) translateY(-1px);
     display: inline-block;
     font-size: 8pt;
     padding: 0 3px;
-    animation-name: heartBeat;
+    animation-name: heartbeat;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
 
-@keyframes heartBeat {
+@keyframes heartbeat {
     0%,100% {
         transform: translateY(-1px) scale(1.8, 1.5);
     }

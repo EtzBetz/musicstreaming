@@ -1,140 +1,126 @@
-.infos { /* container for info cards */
+.info { /* container for info cards */
     display: flex;
     flex-direction: column;
 }
 
 /* layout for cards, default color */
 
-.info { /* card div*/
+/* card div*/
+.info__card {
+    display: flex;
+    flex-direction: column;
+    background-color: #455A64;
+    color: #fefefe;
+}
+
+/* card wrapper, to color every 2nd card a bit lighter*/
+.info__card__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: #455A64;
-    color: #fefefe;
+    transition-duration: .3s;
 }
-.info:nth-child(odd) {
-    background: #37474F;
+
+/* colors every 2nd card wrapper a bit lighter*/
+.info__card:nth-child(even) .info__card__wrapper {
+    background-color: rgba(255, 255, 255, 0.06);
 }
-.info > span { /* card main text */
-    margin: 20px 15px;
+
+/* card main text */
+.info__card__wrapper__text {
+    margin: 20px auto 20px 15px;
 }
-.info > a { /* card hiding button */
+
+/* card button */
+.info__card__wrapper__button {
     padding: 20px 15px;
     text-align: center;
     min-width: fit-content;
-    background: #37474F;
+    background-color: #0000000a;
     color: #eeeeee;
 }
-.info:nth-child(odd) > a {
-    background: #2d3c43;
-}
-.info > a:hover {
-    background: #546E7A;
-}
-.info:nth-child(odd) > a:hover {
-    background: #455A64;
+
+/* card button on hover*/
+.info__card__wrapper__button:hover {
+    background-color: #ffffff1a;
 }
 
+/* card currently transitioning out then being deleted */
+.js-info__card--exiting{
+    z-index: -1;
+    transform-origin: bottom left;
+    animation: fadeOutTop .5s ease-in normal;
+}
 
-/* color variations for cards:
+/* every card after a currently exiting card */
+.js-info__card--exiting ~ .info__card{
+    transform: translateY(-59px); /* TODO: maybe fix this issue that when the removed card is taller than 59px this bugs the animation a bit */
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+}
+
+/* every card wrapper after a currently exiting card, this and the following
+ class animates the lighter background "to the next card" because cards are moved */
+.js-info__card--exiting ~ .info__card > .info__card__wrapper{
+    background-color: rgba(255, 255, 255, 0.06);
+}
+/* every 2nd card wrapper after a currently exiting card */
+.js-info__card--exiting ~ .info__card:nth-child(even) > .info__card__wrapper{ /* card button */
+    background-color: rgba(255, 255, 255, 0);
+}
+
+/* transition out a card to the top and hide it*/
+@keyframes fadeOutTop {
+    0% {
+        transform: translateY(0%) /*rotate(0deg)*/;
+        opacity: 100%;
+    }
+    35%,100% {
+        transform: translateY(-100%) /*rotate(-8deg)*/;
+        opacity: 0;
+    }
+}
+
+/* transition out a card to the left*/
+@keyframes fadeOutLeft {
+    0% {
+        transform: translateX(-0%);
+    }
+    30%,100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* transition out a card to the right*/
+@keyframes fadeOutRight {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* material color(google.com/design) variations for cards:
  * main div:     500
- * button:       600
- * button hover: 400
- *   odd items  +100
  */
 
-
-.info.green {
-    background: #8BC34A;
-}
-.info.green:nth-child(odd) {
-    background: #7CB342;
-}
-.info.green > a {
-    background: #7CB342;
-}
-.info.green:nth-child(odd) > a {
-    background: #689F38;
-}
-.info.green > a:hover {
-    background: #9CCC65;
-}
-.info.green:nth-child(odd) > a:hover {
-    background: #8BC34A;
+.info__card--green {
+    background-color: #8BC34A;
 }
 
-.info.yellow { /* every color +100 because yellow is bright already */
-    background: #FDD835;
-}
-.info.yellow:nth-child(odd) {
-    background: #FBC02D;
-}
-.info.yellow > a {
-    background: #FBC02D;
-}
-.info.yellow:nth-child(odd) > a {
-    background: #F9A825;
-}
-.info.yellow > a:hover {
-    background: #FFEE58;
-}
-.info.yellow:nth-child(odd) > a:hover {
-    background: #FFEB3B;
+.info__card--yellow { /* amber used here */
+    background-color: #FFC107;
 }
 
-.info.orange {
-    background: #FF9800;
-}
-.info.orange:nth-child(odd) {
-    background: #FB8C00;
-}
-.info.orange > a {
-    background: #FB8C00;
-}
-.info.orange:nth-child(odd) > a {
-    background: #F57C00;
-}
-.info.orange > a:hover {
-    background: #FFA726;
-}
-.info.orange:nth-child(odd) > a:hover {
-    background: #FF9800;
+.info__card--orange {
+    background-color: #FF9800;
 }
 
-.info.red {
-    background: #F44336;
-}
-.info.red:nth-child(odd) {
-    background: #E53935;
-}
-.info.red > a {
-    background: #E53935;
-}
-.info.red:nth-child(odd) > a {
-    background: #D32F2F;
-}
-.info.red > a:hover {
-    background: #EF5350;
-}
-.info.red:nth-child(odd) > a:hover {
-    background: #F44336;
+.info__card--red {
+    background-color: #F44336;
 }
 
-.info.blue { /* light blue used here */
-    background: #03A9F4;
-}
-.info.blue:nth-child(odd) {
-    background: #039BE5;
-}
-.info.blue > a {
-    background: #039BE5;
-}
-.info.blue:nth-child(odd) > a {
-    background: #0288D1;
-}
-.info.blue > a:hover {
-    background: #29B6F6;
-}
-.info.blue:nth-child(odd) > a:hover {
-    background: #03A9F4;
+.info__card--blue { /* light blue used here */
+    background-color: #03A9F4;
 }

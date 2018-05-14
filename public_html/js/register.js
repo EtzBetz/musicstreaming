@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkMatchingPasswords(password, passwordRepeat) {
     if (password.value !== passwordRepeat.value) {
         if (passwordRepeat.value !== "") {
-            password.classList.add("notMatching");
-            passwordRepeat.classList.add("notMatching");
+            password.classList.add("js-card__input--not_matching");
+            passwordRepeat.classList.add("js-card__input--not_matching");
             return false;
         }
     } else {
-        password.classList.remove("notMatching");
-        passwordRepeat.classList.remove("notMatching");
+        password.classList.remove("js-card__input--not_matching");
+        passwordRepeat.classList.remove("js-card__input--not_matching");
         return true;
     }
 }

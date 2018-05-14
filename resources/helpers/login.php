@@ -13,11 +13,11 @@ if (isset($_POST['email'], $_POST['password'])) {
         header('Location: ../public_html/index.php'); // TODO: redirect to some page, index viable?
     } else {
         // Login failed
-        InfoList::addInfo(new Info("Login failed. Credentials are wrong or the user doesn't exist.", "I'll try again", Config::configArr["urls"]["login"], "yellow"));
+        InfoList::addInfo(new Info("Login failed. Password is wrong or the user doesn't exist.", "I'll try again", Config::configArr["urls"]["login"], "yellow"));
     }
 } else {
     // Some error with post parameters
-    InfoList::addInfo(new Info("An error occurred. A post parameter isn't set.", "I'll try again", Config::configArr["urls"]["register"], "red"));
+    InfoList::addInfo(new Info("An error occurred. A post parameter isn't set.", "I'll try again", Config::configArr["urls"]["login"], "red"));
 }
 /**
  * @param $email    [string]

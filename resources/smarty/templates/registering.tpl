@@ -1,7 +1,6 @@
 {include file="header.tpl"}
-<div class="column center spaceFull">
-    <div class="row center">
+<div class="content--set-column content--center-align div--flex-full">
+    <div class="content--set-row content--center-align">
     </div>
-    <div class="columnSpace150"></div>
 </div>
 {include file="footer.tpl"}

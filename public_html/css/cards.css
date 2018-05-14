@@ -1,23 +1,27 @@
-div.card {
+/* CARD GENERAL */
+.card {
     background: #fff;
     padding: 16px;
-    margin: 50px;
+    margin: 40px 20px;
     box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.15);
 }
 
-form > div{
+/* CARD COLUMNS */
+.card__column {
     margin: 10px 0 10px 0;
 }
 
-
-form > div > label{
+/* CARD ELEMENTS */
+/* LABEL */
+.card__label {
     text-align: left;
     font-size: 12pt;
     padding-left: 6px;
     color: #757575;
 }
 
-form > div > input{
+/* INPUT */
+.card__input{
     text-align: left;
     font-size: 14pt;
     background-color: #fafafa;
@@ -28,47 +32,44 @@ form > div > input{
     background-position: right -15px center;
     background-size: 15px 15px;
     background-repeat: no-repeat;
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg); /* TODO: exchange with own local checkmark, add error icon? */
 }
 
-form > div > input:hover{
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09);
-}
-
-form > div > input:focus{
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09),inset 0 0 0 1px #0000001a;
-}
-
-form > div > input:valid{
-    background-position: right 10px center;
-}
-
-form > div > input:invalid:not(:focus):not(:placeholder-shown), form > div > input.notMatching:valid:not(:focus){
-    background-color: pink;
-    background-position: right -15px center;
-}
-
-form > div > input:invalid:focus:not(:placeholder-shown) + .warning{
-    max-height: 200px;
-    padding: 8px 8px;
-    border-radius: 0 0 7px 7px;
-}
-
-form > div > input#passwordRepeat.notMatching:invalid:focus:not(:placeholder-shown) + .warning{
-    border-radius: 0 0 0 0;
-}
-
-form > div > input::placeholder{
+/* PLACEHOLDER TEXT OF INPUT */
+.card__input::placeholder{
     color: #ddd;
     font-style: italic;
     transition: .2s ease-in-out;
 }
 
-form > div > input:focus::placeholder{
-    color: #fafafa;
+/* PLACEHOLDER TEXT OF FOCUSED INPUT */
+.card__input:focus::placeholder{
+    opacity: 0;
 }
 
-form > div > span.warning{
+/* INPUT HOVERED */
+.card__input:hover{
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09);
+}
+
+/* INPUT FOCUSED */
+.card__input:focus{
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.09),inset 0 0 0 1px #0000001a;
+}
+
+/* INPUT WITH VALID TEXT INPUT */
+.card__input:valid{
+    background-position: right 10px center;
+}
+
+/* INPUT UNFOCUSED WITH INVALID TEXT, INPUT UNFOCUSED WHEN PASSWORDS DON'T MATCH */
+.card__input:invalid:not(:focus):not(:placeholder-shown), .card__input.js-card__input--not_matching:valid:not(:focus){
+    background-color: #ffc0cb;
+    background-position: right -15px center;
+}
+
+/* INFO BELOW INPUT */
+.card__input__warning{
     padding: 0 8px;
     max-height: 0;
     overflow: hidden;
@@ -77,19 +78,27 @@ form > div > span.warning{
     text-wrap: normal;
 }
 
-form > div > input.notMatching + span.warning + span.warning{
+/* INFO BELOW FOCUSED INPUT WITH INVALID TEXT */
+.card__input:invalid:focus:not(:placeholder-shown) + .card__input__warning{
     max-height: 200px;
     padding: 8px 8px;
     border-radius: 0 0 7px 7px;
 }
 
-
-div > input:valid + div > button[type="submit"]{
-    border: 2px solid green;
+/* 2ND INFO BELOW INPUT WHEN PASSWORDS DON'T MATCH */
+.js-card__input--not_matching + .card__input__warning + .card__input__warning{
+    max-height: 200px;
+    padding: 8px 8px;
+    border-radius: 0 0 7px 7px;
 }
 
+/* 1ST INFO BELOW FOCUSED INPUT WHEN 2ND INFO IS SHOWN */
+.js-card__input--not_matching:invalid:focus:not(:placeholder-shown) + .card__input__warning{
+    border-radius: 0 0 0 0;
+}
 
-form > div > button[type="submit"]{
+/* SUBMIT BUTTON */
+.card__button--submit{
     font-size: 14pt;
     width: 300px;
     transition: .1s ease-in-out;
@@ -102,7 +111,8 @@ form > div > button[type="submit"]{
     letter-spacing: 1px;
 }
 
-form > div > button[type="submit"]:hover{
+/* SUBMIT BUTTON HOVERED */
+.card__button--submit:hover{
     box-shadow: none;
     background-color: #8BC34A;
     border-color: #8BC34A;

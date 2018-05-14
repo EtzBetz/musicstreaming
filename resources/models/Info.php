@@ -10,7 +10,7 @@ class Info {
     protected $mainText;
     protected $btnText;
     protected $btnLink;
-    protected $color;
+    protected $color; /* TODO: add getter for css class, f.e. "info__card--$color" or something*/
 
     /**
      * Info constructor.

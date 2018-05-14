@@ -93,7 +93,7 @@ if (isset($_GET["p"])) {
 
 function checkCookieAgreement() {
     if(!isset($_COOKIE["cookiesAccepted"]) || (isset($_COOKIE["cookiesAccepted"]) && $_COOKIE["cookiesAccepted"] != 1)) {
-        InfoList::addInfo(new Info("This website uses cookies to ensure that you get the best experience.", "I don't care", "","green"));
+        InfoList::addInfo(new Info(Config::configArr["strings"]["cookieText"], Config::configArr["strings"]["cookieButton"], "","green"));
     }
 }
 
