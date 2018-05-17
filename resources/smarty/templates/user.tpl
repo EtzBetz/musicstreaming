@@ -4,7 +4,7 @@
         <div class="card">
             {if isset($user)}
                 <p class="text--title content--center-align">{$user->getUsername()}</p>
-                <p class="text--title content--center-align">Am {$user->getCreated()} der Seite beigetreten.</p>
+                <p class="content--left-align">Am {$user->getCreated()} der Seite beigetreten.</p>
                 {* TODO: add uploaded songs, created albums and playlists of user *}
             {else}
                 <p class="text--title content--center-align">Interner Fehler.</p>

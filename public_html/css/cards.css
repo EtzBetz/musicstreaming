@@ -6,6 +6,10 @@
     box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.15);
 }
 
+.card--no-padding {
+    padding: 0;
+}
+
 /* CARD COLUMNS */
 .card__column {
     margin: 10px 0 10px 0;

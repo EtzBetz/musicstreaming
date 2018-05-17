@@ -54,5 +54,6 @@ header {
 }
 
 .js-header__navigation--shrink > div {
+    will-change: margin;
     margin: 0;
 }

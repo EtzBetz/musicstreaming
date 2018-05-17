@@ -47,7 +47,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongAttributes($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name, song.filename, song.visits, song.created, song.userid, song.artistid, song.genreid, song.songtextid, song.coverid, song.albumid, genre.name as genrename, songtext.content as songtextcontent, cover.id as coveridtest FROM song LEFT JOIN genre ON song.genreid = genre.id LEFT JOIN songtext ON song.songtextid = songtext.id LEFT JOIN cover ON song.coverid = cover.id WHERE song.id = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name, song.filename, song.visits, song.created, song.userid, song.artistid, song.genreid, song.songtextid, song.coverid, song.albumid, genre.name as genrename, songtext.content as songtextcontent, cover.filename as coverfilename FROM song LEFT JOIN genre ON song.genreid = genre.id LEFT JOIN songtext ON song.songtextid = songtext.id LEFT JOIN cover ON song.coverid = cover.id WHERE song.id = :id");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -56,20 +56,20 @@ class DBConnect {
         if($query->rowCount() == 1) {
             while ($row = $query->fetch()) {
                 $data = array(
-                    "id"        => $row['id'],
-                    "name"      => $row['name'],
-                    "filename"  => $row['filename'],
-                    "visits"    => $row['visits'],
-                    "created"   => $row['created'],
-                    "userId"    => $row['userid'],
-                    "artistId"  => $row['artistid'],
-                    "genreId"   => $row['genreid'],
-                    "genre"     => $row['genrename'],
-                    "songtextId"=> $row['songtextid'],
-                    "songtext"  => $row['songtextcontent'],
-                    "coverId"   => $row['coverid'],
-                    "cover"     => $row['coveridtest'],
-                    "albumId"   => $row['albumid'],
+                    "id"            => $row['id'],
+                    "name"          => $row['name'],
+                    "filename"      => $row['filename'],
+                    "visits"        => $row['visits'],
+                    "created"       => $row['created'],
+                    "userId"        => $row['userid'],
+                    "artistId"      => $row['artistid'],
+                    "genreId"       => $row['genreid'],
+                    "genre"         => $row['genrename'],
+                    "songtextId"    => $row['songtextid'],
+                    "songtext"      => $row['songtextcontent'],
+                    "coverId"       => $row['coverid'],
+                    "coverFilename" => $row['coverfilename'],
+                    "albumId"       => $row['albumid'],
                 );
             }
         }

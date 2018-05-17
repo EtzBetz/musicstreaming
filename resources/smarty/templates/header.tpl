@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='./css/header_footer.css'>
     <link rel='stylesheet' href='./css/extras.css'>
     <link rel='stylesheet' href='./css/cards.css'>
+    <link rel='stylesheet' href='./css/song.css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,600|Roboto:300,400,600' rel='stylesheet'>
 </head>
 <body>

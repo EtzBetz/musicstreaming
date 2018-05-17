@@ -19,7 +19,7 @@ class Song {
     protected $songtextId;
     protected $songtext;
     protected $coverId;
-    protected $cover;
+    protected $coverFilename;
     protected $albumId;
 
     /**
@@ -42,7 +42,7 @@ class Song {
         $this->songtextId = $data["songtextId"];
         $this->songtext = nl2br($data["songtext"]);
         $this->coverId = $data["coverId"];
-        $this->cover = $data["cover"];
+        $this->coverFilename = $data["coverFilename"];
         $this->albumId = $data["albumId"];
     }
 
@@ -210,15 +210,15 @@ class Song {
     /**
      * @return mixed
      */
-    public function getCover() {
-        return $this->cover;
+    public function getCoverFilename() {
+        return $this->coverFilename;
     }
 
     /**
-     * @param mixed $cover
+     * @param mixed $coverFilename
      */
-    public function setCover($cover) {
-        $this->cover = $cover;
+    public function setCoverFilename($coverFilename) {
+        $this->coverFilename = $coverFilename;
     }
 
     /**

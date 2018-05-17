@@ -1,6 +1,7 @@
 window.onscroll = function() {shrinkingHeader()};
 
 var header = document.getElementById("header");
+var songtextbutton = document.getElementById("song__songtext-button");
 
 /* Dynamic Height for spacer of the header div */ /*
 var headerContainer = document.getElementById("headerContainer");
@@ -28,4 +29,8 @@ function hideInfo(infoCard){
 
 function setCookiesAccepted(){ // TODO: use this function to set cookieCookie, also figure out how to do that..
     document.cookie = "cookiesAccepted=1; path=/";
+}
+
+function toggleSongtext(){
+    songtextbutton.classList.toggle("js-songtext--show");
 }
