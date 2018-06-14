@@ -92,6 +92,62 @@ class DBConnect {
         }
         return $data;
     }
+    public static function getAlbumAttributes($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name, album.created, album.artistid, album.coverid FROM album WHERE album.id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $data = array(
+                    "id"        => $row['id'],
+                    "name"      => $row['name'],
+                    "created"   => $row['created'],
+                    "artistId"  => $row['artistid'],
+                    "coverId"   => $row['coverid'],
+                );
+            }
+        }
+        return $data;
+    }
+    public static function getPlaylistAttributes($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id, playlist.name, playlist.created, playlist.userid FROM playlist WHERE playlist.id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $data = array(
+                    "id"        => $row['id'],
+                    "name"      => $row['name'],
+                    "created"   => $row['created'],
+                    "userId"    => $row['userid'],
+                );
+            }
+        }
+        return $data;
+    }
+    public static function getCoverAttributes($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT cover.id, cover.filename FROM cover WHERE cover.id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $data = array(
+                    "id"        => $row['id'],
+                    "filename"  => $row['filename'],
+                );
+            }
+        }
+        return $data;
+    }
 
 
     public static function getUserIdFromEmail($email) {
@@ -128,6 +184,37 @@ class DBConnect {
         $time = $time->format("Y-m-d H:i:s");
         $query->bindParam(":created", $time);
         $query->execute();
+
+        if($query) {
+            return true;
+        } else return false;
+    }
+    public static function insertSong($name, $filename, $userId, $artistId, $genreId, $songtext, $coverFilename, $albumId) {
+        DBConnect::getInstance()->connection->beginTransaction();
+        $query = DBConnect::getInstance()->connection->prepare(
+           "
+                      BEGIN;
+                      INSERT INTO songtext(content) VALUES (:songtext);
+                      SELECT LAST_INSERT_ID() INTO @songtextlastid;
+                      INSERT INTO cover(filename) VALUES (:coverFilename);
+                      SELECT LAST_INSERT_ID() INTO @coverlastid;
+                      INSERT INTO song(name, filename, created, userid, artistid, genreid, songtextid, coverid, albumid)
+                      VALUES(:name, :filename, :created, :userId, :artistId, :genreId, @songtextlastid, @coverlastid, :albumId);
+                      COMMIT;");
+        $query->bindParam(":name", $name);
+        $query->bindParam(":filename", $filename);
+        $time = new DateTime();
+        $time = $time->format("Y-m-d H:i:s");
+        $query->bindParam(":created", $time);
+        $query->bindParam(":userId", $userId);
+        $query->bindParam(":artistId", $artistId);
+        $query->bindParam(":genreId", $genreId);
+        $query->bindParam(":songtext", $songtext);
+        $query->bindParam(":coverFilename", $coverFilename);
+        $query->bindParam(":albumId", $albumId);
+        $query->execute();
+
+        DBConnect::getInstance()->connection->commit();
 
         if($query) {
             return true;
