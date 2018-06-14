@@ -32,7 +32,7 @@ if (isset($_POST['email'], $_POST['username'], $_POST['password'])) {
 
         if (DBConnect::insertUser($email, $username, $password, $random_salt)) {
             header('Location: .' . Config::configArr["urls"]["user"] . "&id=" . DBConnect::getUserIdFromEmail($email)); // TODO: redirect to userpage of newly created user
-        }
+        }   // TODO: sign in user because our activity diagram says so..
     }
 } else {
     InfoList::addInfo(new Info("An error occurred. A post parameter isn't set.", "I'll try again", Config::configArr["urls"]["register"], "red"));
