@@ -15,7 +15,7 @@
     <header id="headerContainer">
         <div class="header__navigation" id="header">
             <div>
-                {*<img class="header__logo" src="./images/LauchLogo.jpg">*}
+                {*<img class="header__logo" src="./content_files/images/website/LauchLogo.jpg">*}
                 <a class="header__button button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--music_circle--light" href="{$configArr.urls.base}">{$configArr.strings.mainTitle}</a>
             </div>
             <div>
