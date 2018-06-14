@@ -21,7 +21,7 @@ class DBConnect {
     private $connection = null;
 
     private function __construct() {
-        $this->connection = new PDO('mysql:host='. Config::configArr['db']['host'] .';dbname='. Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')); // TODO: Put connect data in Config.php
+        $this->connection = new PDO('mysql:host=' . Config::configArr['db']['host'] . ';dbname=' . Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')); // TODO: Put connect data in Config.php
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
