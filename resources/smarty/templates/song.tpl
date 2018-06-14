@@ -2,8 +2,8 @@
 <div class="content--set-column content--center-align">
     <div class="content--set-row content--center-align">
         <div class="card card--no-padding">
-            {if isset($song) && isset($artist) && isset($user)}
-                <div><img class="song__cover" src="{$configArr["urls"]["coverDirectory"]}{$song->getCoverFilename()}"/></div>
+            {if isset($song) && isset($artist) && isset($user) && isset($cover)}
+                <div><img class="song__cover" src="{$configArr["urls"]["coverDirectory"]}{$cover->getFilename()}"/></div>
                 <div><audio class="song__controls" src="{$configArr["urls"]["musicDirectory"]}{$song->getFilename()}" controls preload="auto"></audio></div>
                 <p class="song__title-genre content--set-row content--left-align">
                     <span class="song__title text--title">{$song->getName()}</span>
