@@ -149,6 +149,140 @@ class DBConnect {
         return $data;
     }
 
+    public static function getGenres() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT genre.id, genre.name FROM genre");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+    public static function getArtists() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT artist.id, artist.name FROM artist");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+    public static function getAlbums() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name FROM album");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+    public static function getPlaylists() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id, playlist.name FROM playlist");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+    public static function getSongs() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name FROM song");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+    public static function getAlbumFromArtist($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name, album.artistid FROM album WHERE album.artistid = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $singleData['id'] = $row['id'];
+                $singleData['name'] = $row['name'];
+                $data[] = $singleData;
+            }
+        }
+        return $data;
+    }
+    public static function getSongsFromAlbum($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumid FROM song WHERE song.albumid = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[] = $row['id'];
+            }
+        }
+        return $data;
+    }
+    public static function getSongsFromPlaylist($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlistSong.id, playlistSong.songid, playlistSong.playlistid FROM playlistSong WHERE playlistSong.playlistId = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[] = $row['songid'];
+            }
+        }
+        return $data;
+    }
+
 
     public static function getUserIdFromEmail($email) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT user.id FROM user WHERE user.email = :email");
@@ -230,8 +364,6 @@ class DBConnect {
             return true;
         } else return false;
     }
-
-
 
 
     public static function getNumberOfLoginAttempts($userId, DateTime $timeSpan) {
