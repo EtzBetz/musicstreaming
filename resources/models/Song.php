@@ -19,7 +19,6 @@ class Song {
     protected $songtextId;
     protected $songtext;
     protected $coverId;
-    protected $coverFilename;
     protected $albumId;
 
     /**
@@ -205,20 +204,6 @@ class Song {
      */
     public function setCoverId($coverId) {
         $this->coverId = $coverId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoverFilename() {
-        return $this->coverFilename;
-    }
-
-    /**
-     * @param mixed $coverFilename
-     */
-    public function setCoverFilename($coverFilename) {
-        $this->coverFilename = $coverFilename;
     }
 
     /**
