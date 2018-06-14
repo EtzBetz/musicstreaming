@@ -68,6 +68,29 @@ if (isset($_GET["p"])) {
             }
             $smarty->display('song.tpl');
             break;
+        case "album":
+            require_once(__DIR__ . "/../resources/models/Album.php");
+            require_once(__DIR__ . "/../resources/models/Artist.php");
+            require_once(__DIR__ . "/../resources/models/Cover.php");
+            require_once(__DIR__ . "/../resources/models/Song.php");
+            if (isset($_GET["id"])) {
+                $album = new Album($_GET["id"]);
+                $artist = new Artist($album->getArtistId());
+                $cover = new Cover($album->getCoverId());
+
+                $songIds = $album->getSongIds();
+                $songs = array();
+                for ($i = 0; $i < count($songIds); $i++) {
+                    $songs[] = new Song($songIds[$i]);
+                }
+
+                $smarty->assign("album", $album);
+                $smarty->assign("artist", $artist);
+                $smarty->assign("cover", $cover);
+                $smarty->assign("songs", $songs);
+            }
+            $smarty->display('album.tpl');
+            break;
         case "artist":
             require_once(__DIR__ . "/../resources/models/Artist.php");
             if (isset($_GET["id"])) {
@@ -83,6 +106,53 @@ if (isset($_GET["p"])) {
                 $smarty->assign("user", $user);
             }
             $smarty->display('user.tpl');
+            break;
+        case "playlist":
+            require_once(__DIR__ . "/../resources/models/Playlist.php");
+            require_once(__DIR__ . "/../resources/models/User.php");
+            require_once(__DIR__ . "/../resources/models/Artist.php");
+            require_once(__DIR__ . "/../resources/models/Song.php");
+            require_once(__DIR__ . "/../resources/models/Cover.php");
+            if (isset($_GET["id"])) {
+                $playlist = new Playlist($_GET["id"]);
+                $user = new User($playlist->getUserId());
+
+                $songIds = $playlist->getSongIds();
+                $songs = array();
+                for ($i = 0; $i < count($songIds); $i++) {
+                    $songs[] = new Song($songIds[$i]);
+                }
+//                var_dump($playlist);
+                $smarty->assign("playlist", $playlist);
+                $smarty->assign("user", $user);
+                $smarty->assign("songs", $songs);
+            }
+            $smarty->display('playlist.tpl');
+            break;
+        case "add_song":
+            $smarty->assign("artists", DBConnect::getArtists());
+            $smarty->assign("genres", DBConnect::getGenres());
+            $smarty->display('add_song.tpl');
+            break;
+        case "uploading":
+            require_once(__DIR__ . "/../resources/helpers/upload.php");
+            assignInfos($smarty);
+            //$smarty->display('add_song.tpl');
+            break;
+        case "api_artists":
+            require_once(__DIR__ . "/../resources/api/artists.php");
+            break;
+        case "api_albums":
+            require_once(__DIR__ . "/../resources/api/albums.php");
+            break;
+        case "api_playlists":
+            require_once(__DIR__ . "/../resources/api/playlists.php");
+            break;
+        case "api_genres":
+            require_once(__DIR__ . "/../resources/api/genres.php");
+            break;
+        case "api_songs":
+            require_once(__DIR__ . "/../resources/api/songs.php");
             break;
         default:
             $smarty->display('404.tpl');
