@@ -12,5 +12,7 @@
     <script src='./js/javascript.js'></script>
     {if $page == "register"}
         <script src='./js/register.js'></script>
+    {elseif $page == "add_song"}
+        <script src='./js/add_song.js'></script>
     {/if}
 </html>
