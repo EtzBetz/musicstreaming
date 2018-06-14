@@ -21,6 +21,7 @@
     text-align: left;
     font-size: 12pt;
     padding-left: 6px;
+    padding-bottom: 3px;
     color: #757575;
 }
 
@@ -31,7 +32,7 @@
     background-color: #fafafa;
     border: none;
     padding: 5px;
-    width: 300px;
+    width: 400px;
     transition: .2s ease-in-out;
     background-position: right -15px center;
     background-size: 15px 15px;
@@ -104,13 +105,13 @@
 /* SUBMIT BUTTON */
 .card__button--submit{
     font-size: 14pt;
-    width: 300px;
+    min-width: 300px;
     transition: .1s ease-in-out;
     text-align: center;
     text-transform: uppercase;
     background-color: #ffffff00;
     margin-top: 8px;
-    padding: 12px 0;
+    padding: 12px 24px;
     border: 2px solid #263238;
     letter-spacing: 1px;
 }

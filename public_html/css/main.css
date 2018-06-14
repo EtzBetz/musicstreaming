@@ -19,6 +19,13 @@ img, audio {
     display: block;
 }
 
+textarea {
+    resize: vertical;
+    transition: height 0s, box-shadow .2s, color .2s, background-color .2s !important;
+    height: 500px;
+    font-size: 12pt !important; /*  TODO: add an own class for textarea for each form  */
+}
+
 .container {
     display: flex;
     flex-direction: column;
