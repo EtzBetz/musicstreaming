@@ -68,8 +68,9 @@ if (isset($_SESSION["username"], $_SESSION["userId"])) {
 
         if ($uploadFiles == true) {
             if (move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic) && move_uploaded_file($_FILES["musiccover"]["tmp_name"], $uploadFilepathCover)) {
-                DBConnect::insertSong($songTitle, ($curTimestamp . basename($_FILES["musicfile"]["name"])), $_SESSION["userId"], $songArtist, $songGenre, $songText, $curTimestamp . basename($_FILES["musiccover"]["name"]), $songAlbum);
-                echo "success";
+                $songId = DBConnect::insertSong($songTitle, ($curTimestamp . basename($_FILES["musicfile"]["name"])), $_SESSION["userId"], $songArtist, $songGenre, $songText, $curTimestamp . basename($_FILES["musiccover"]["name"]), $songAlbum);
+                header("Location: " . Config::configArr['urls']['base'] . Config::configArr['urls']['song'] . "&" . Config::configArr['urls']['id'] . $songId);
+                die();
 
             } else {
                 echo "failed:" . move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic);
