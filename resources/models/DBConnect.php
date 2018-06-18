@@ -21,7 +21,7 @@ class DBConnect {
     private $connection = null;
 
     private function __construct() {
-        $this->connection = new PDO('mysql:host=' . Config::configArr['db']['host'] . ';dbname=' . Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')); // TODO: Put connect data in Config.php
+        $this->connection = new PDO('mysql:host=' . Config::configArr['db']['host'] . ';dbname=' . Config::configArr['db']['db'], Config::configArr['db']['username'], Config::configArr['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -293,6 +293,9 @@ class DBConnect {
             while ($row = $query->fetch()) {
                 return($row['id']);
             }
+            return false;
+        } else {
+            return false;
         }
     }
     public static function getUserIdFromUsername($username) {
@@ -304,6 +307,9 @@ class DBConnect {
             while ($row = $query->fetch()) {
                 return($row['id']);
             }
+            return false;
+        } else {
+            return false;
         }
     }
 
@@ -325,16 +331,37 @@ class DBConnect {
     }
     public static function insertSong($name, $filename, $userId, $artistId, $genreId, $songtext, $coverFilename, $albumId) {
         DBConnect::getInstance()->connection->beginTransaction();
-        $query = DBConnect::getInstance()->connection->prepare(
-           "
-                      BEGIN;
-                      INSERT INTO songtext(content) VALUES (:songtext);
-                      SELECT LAST_INSERT_ID() INTO @songtextlastid;
-                      INSERT INTO cover(filename) VALUES (:coverFilename);
-                      SELECT LAST_INSERT_ID() INTO @coverlastid;
-                      INSERT INTO song(name, filename, created, userid, artistid, genreid, songtextid, coverid, albumid)
-                      VALUES(:name, :filename, :created, :userId, :artistId, :genreId, @songtextlastid, @coverlastid, :albumId);
-                      COMMIT;");
+
+        $query = DBConnect::getInstance()->connection->prepare("BEGIN");
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO songtext(content) VALUES (:songtext)");
+        $query->bindParam(":songtext", $songtext);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $songtextId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $songtextId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO cover(filename) VALUES (:coverFilename)");
+        $query->bindParam(":coverFilename", $coverFilename);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $coverId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $coverId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO song(name, filename, created, userid, artistid, genreid, songtextid, coverid, albumid) VALUES(:name, :filename, :created, :userId, :artistId, :genreId, :songtextId, :coverId, :albumId)");
         $query->bindParam(":name", $name);
         $query->bindParam(":filename", $filename);
         $time = new DateTime();
@@ -343,16 +370,27 @@ class DBConnect {
         $query->bindParam(":userId", $userId);
         $query->bindParam(":artistId", $artistId);
         $query->bindParam(":genreId", $genreId);
-        $query->bindParam(":songtext", $songtext);
-        $query->bindParam(":coverFilename", $coverFilename);
+        $query->bindParam(":songtextId", $songtextId);
+        $query->bindParam(":coverId", $coverId);
         $query->bindParam(":albumId", $albumId);
         $query->execute();
 
-        DBConnect::getInstance()->connection->commit();
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $songId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $songId = ($row['LAST_INSERT_ID()']);
+            }
+        }
 
-        if($query) {
-            return true;
-        } else return false;
+        $query = DBConnect::getInstance()->connection->prepare("COMMIT;");
+        $query->execute();
+        if (isset ($songId) && $songId != null) {
+            return $songId;
+        } else {
+            return false;
+        }
     }
     public static function insertLoginAttempt($userId, $time) {
         $query = DBConnect::getInstance()->connection->prepare("INSERT INTO failedLogin(userId, time) VALUES(:userId, :time)");
