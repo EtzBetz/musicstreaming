@@ -130,12 +130,32 @@ if (isset($_GET["p"])) {
             $smarty->display('playlist.tpl');
             break;
         case "add_song":
+            if (isset($_GET["do"])) {
+                switch ($_GET["do"]) {
+                    case "upload":
+                        require_once(__DIR__ . "/../resources/models/Song.php");
+                        require_once(__DIR__ . "/../resources/libs/getid3/getid3.php");
+                        if (isset($_SESSION["username"], $_SESSION["userId"])) {
+                            if (isset($_POST["title"], $_POST["album"], $_POST["artist"], $_POST["genre"], $_POST["songtext"])) {
+                                $songTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+                                $songAlbum = filter_input(INPUT_POST, 'album', FILTER_SANITIZE_STRING);
+                                $songArtist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_STRING);
+                                $songGenre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
+                                $songText = filter_input(INPUT_POST, 'songtext', FILTER_SANITIZE_STRING);
+                                try {
+                                    Song::createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText);
+                                } catch (Exception $exception) {
+                                    $exception->getMessage();
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            assignInfos($smarty);
             $smarty->assign("artists", DBConnect::getArtists());
             $smarty->assign("genres", DBConnect::getGenres());
             $smarty->display('add_song.tpl');
-            break;
-        case "uploading":
-            require_once(__DIR__ . "/../resources/helpers/upload.php");
             break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");

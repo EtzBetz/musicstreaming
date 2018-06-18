@@ -2,7 +2,7 @@
 <div class="content--set-column content--center-align">
     <div class="content--set-row content--center-align">
         <div class="card">
-            <form action="{$configArr.urls.uploading}" onsubmit="return validateForm()" method="post" class="content--set-column" enctype="multipart/form-data">
+            <form action="{$configArr.urls.add_song}&{$configArr.urls.do}upload" onsubmit="return validateForm()" method="post" class="content--set-column" enctype="multipart/form-data">
                 <p class="text--title content--center-align">Neuen Song hochladen</p>
                 <div class="card__column content--set-column">
                     <p class="card__label">Musikdatei</p>

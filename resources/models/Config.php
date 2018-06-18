@@ -23,6 +23,7 @@ class Config {
         "urls" => array(
             "base" => "http://localhost/musicstreaming/public_html",
             "id" => "id=",
+            "do" => "do=",
             "register" => "?p=register",
             "registering" => "?p=registering",
             "login" => "?p=login",

@@ -41,8 +41,114 @@ class Song {
         $this->songtextId = $data["songtextId"];
         $this->songtext = nl2br($data["songtext"]);
         $this->coverId = $data["coverId"];
-        $this->coverFilename = $data["coverFilename"];
         $this->albumId = $data["albumId"];
+    }
+
+    public static function createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText) {
+
+                if($songAlbum == "none") {$songAlbum = null;}
+
+                $curTimestamp = new DateTime();
+                $curTimestamp = $curTimestamp->format("Y-m-d_H-i-s");
+
+                $uploadDirMusic = ($_SERVER['DOCUMENT_ROOT'] . Config::configArr["urls"]["musicDirectoryInternal"]);
+                $uploadFilepathMusic = $uploadDirMusic . $curTimestamp . basename($_FILES["musicfile"]["name"]);
+
+                $uploadDirCover = ($_SERVER['DOCUMENT_ROOT'] . Config::configArr["urls"]["coverDirectoryInternal"]);
+                $uploadFilepathCover = $uploadDirCover . $curTimestamp . basename($_FILES["musiccover"]["name"]);
+
+                $uploadFiles = true;
+
+                $renameTries = 0;
+                while (file_exists($uploadFilepathMusic)){
+                    if ($renameTries > 100) {
+                        $uploadFiles = false;
+                        InfoList::addInfo(new Info("There is already a music file with the same name. Try renaming and uploading it again.", "I'll try", "", "red"));
+                        break;
+                    }
+                    $dateTime = new DateTime();
+                    $dateTime = $dateTime->format("Y-m-d_H-i-s");
+                    $renameTries++;
+                }
+
+                $renameTries = 0;
+                while (file_exists($uploadFilepathCover)){
+                    if ($renameTries > 100) {
+                        $uploadFiles = false;
+                        InfoList::addInfo(new Info("There is already a cover file with the same name. Try renaming and uploading it again.", "I'll try", "", "red"));
+                        break;
+                    }
+                    $dateTime = new DateTime();
+                    $dateTime = $dateTime->format("Y-m-d_H-i-s");
+                    $renameTries++;
+                }
+
+                if (!Song::isFileAnImage()) {
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Cover file wasn't recognized as image.", "Try another format", "", "red"));
+                }
+
+                if (!Song::isFileAudio()) {
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Audio file wasn't recognized as audio.", "Try another format", "", "red"));
+                }
+
+                if ($_FILES["musiccover"]["size"] > 52428800){ // TODO: Herr Menne, hier müssen Sie die Dateigröße ändern
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Cover file exceeded the maximum file size.", "Okay", "", "red"));
+                }
+
+                if ($_FILES["musicfile"]["size"] > 52428800) { // TODO: Herr Menne, hier müssen Sie die Dateigröße ändern²
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Music file exceeded the maximum file size.", "Okay", "", "red"));
+                }
+
+                $musicFileExtension = strtolower(pathinfo($uploadFilepathMusic, PATHINFO_EXTENSION));
+                $coverFileExtension = strtolower(pathinfo($uploadFilepathCover, PATHINFO_EXTENSION));
+                if (!($coverFileExtension == "jpg" | $coverFileExtension == "jpeg" | $coverFileExtension == "png" | $coverFileExtension == "bmp")) {
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Cover file doesn't have a supported extension.", "Okay", "", "red"));
+                } else if (!($musicFileExtension == "mp3" | $musicFileExtension == "m4a")) {
+                    $uploadFiles = false;
+                    InfoList::addInfo(new Info("Your uploaded Music file doesn't have a supported extension.", "Okay", "", "red"));
+                }
+
+                if ($uploadFiles == true) {
+                    if (move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic) && move_uploaded_file($_FILES["musiccover"]["tmp_name"], $uploadFilepathCover)) {
+                        $songId = DBConnect::insertSong($songTitle, ($curTimestamp . basename($_FILES["musicfile"]["name"])), $_SESSION["userId"], $songArtist, $songGenre, $songText, $curTimestamp . basename($_FILES["musiccover"]["name"]), $songAlbum);
+                        header("Location: " . Config::configArr['urls']['base'] . Config::configArr['urls']['song'] . "&" . Config::configArr['urls']['id'] . $songId);
+                        die();
+
+                    } else {
+                        InfoList::addInfo(new Info("The file couldn't be saved. Try again or contact us.", "Okay", "", "red"));
+                    }
+                }
+
+
+    }
+
+    protected static function isFileAnImage() {
+        if (!getimagesize($_FILES["musiccover"]["tmp_name"])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    protected static function isFileAudio() {
+        try {
+            $getID3 = new getID3;
+            $fileInfo = $getID3->analyze($_FILES["musicfile"]["tmp_name"]);
+            getid3_lib::CopyTagsToComments($fileInfo);
+        } catch (getid3_exception $exception) {
+            echo $exception->getMessage();
+        }
+        if (!preg_match("/^(audio\/)/", $fileInfo["mime_type"])) {
+            echo "<br>other filetype detected: ". $fileInfo["mime_type"];
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
