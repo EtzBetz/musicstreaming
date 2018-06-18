@@ -99,6 +99,7 @@ class Config {
                 "song" => "Song",
                 "artist" => "Künstler",
                 "user" => "Nutzer",
+                "album" => "Album",
             ),
         ),
     );
