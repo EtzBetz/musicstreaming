@@ -8,6 +8,7 @@
 
 .song__controls {
     width: 100%;
+    background-color: #f2f3f4;
 }
 
 .song__title-genre {
@@ -66,7 +67,7 @@
 }
 
 .song__songtext-button {
-    background-color: #efefef;
+    background-color: #f2f3f4;
     padding: 16px 8px;
     margin: 8px 0 0 0;
     cursor: pointer;
