@@ -136,8 +136,6 @@ if (isset($_GET["p"])) {
             break;
         case "uploading":
             require_once(__DIR__ . "/../resources/helpers/upload.php");
-            assignInfos($smarty);
-            //$smarty->display('add_song.tpl');
             break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");
