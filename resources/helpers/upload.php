@@ -26,17 +26,13 @@ if (isset($_SESSION["username"], $_SESSION["userId"])) {
         $curTimestamp = new DateTime();
         $curTimestamp = $curTimestamp->format("Y-m-d_H-i-s");
 
-        $uploadDirMusic = (__DIR__ . "/../.." . Config::configArr["urls"]["musicDirectoryInternal"]); // TODO: mal ohne den ganzen prefix testen?
+        $uploadDirMusic = ($_SERVER['DOCUMENT_ROOT'] . Config::configArr["urls"]["musicDirectoryInternal"]);
         $uploadFilepathMusic = $uploadDirMusic . $curTimestamp . basename($_FILES["musicfile"]["name"]);
 
-        $uploadDirCover = (__DIR__ . "/../.." . Config::configArr["urls"]["coverDirectoryInternal"]); // TODO: mal ohne den ganzen prefix testen?
+        $uploadDirCover = ($_SERVER['DOCUMENT_ROOT'] . Config::configArr["urls"]["coverDirectoryInternal"]);
         $uploadFilepathCover = $uploadDirCover . $curTimestamp . basename($_FILES["musiccover"]["name"]);
 
         $uploadFiles = true;
-
-
-
-
 
         $renameTries = 0;
         while (file_exists($uploadFilepathMusic) || file_exists($uploadFilepathCover)){
@@ -76,7 +72,7 @@ if (isset($_SESSION["username"], $_SESSION["userId"])) {
                 echo "success";
 
             } else {
-                echo "failed:".move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic);
+                echo "failed:" . move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic);
             }
         }
     }
