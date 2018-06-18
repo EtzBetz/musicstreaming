@@ -150,7 +150,7 @@ class DBConnect {
     }
 
     public static function getGenres() {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT genre.id, genre.name FROM genre");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT genre.id, genre.name FROM genre ORDER BY genre.name ASC");
         $query->execute();
 
         $data = null;
@@ -166,7 +166,7 @@ class DBConnect {
         return $data;
     }
     public static function getArtists() {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT artist.id, artist.name FROM artist");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT artist.id, artist.name FROM artist ORDER BY artist.name ASC");
         $query->execute();
 
         $data = null;
@@ -182,7 +182,7 @@ class DBConnect {
         return $data;
     }
     public static function getAlbums() {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name FROM album");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name FROM album ORDER BY album.name ASC");
         $query->execute();
 
         $data = null;
@@ -198,7 +198,7 @@ class DBConnect {
         return $data;
     }
     public static function getPlaylists() {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id, playlist.name FROM playlist");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id, playlist.name FROM playlist ORDER BY playlist.name ASC");
         $query->execute();
 
         $data = null;
@@ -214,7 +214,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongs() {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name FROM song");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name FROM song ORDER BY song.name ASC");
         $query->execute();
 
         $data = null;
@@ -230,7 +230,7 @@ class DBConnect {
         return $data;
     }
     public static function getAlbumFromArtist($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name, album.artistid FROM album WHERE album.artistid = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name, album.artistid FROM album WHERE album.artistid = :id ORDER BY album.name ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -249,7 +249,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongsFromAlbum($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumid FROM song WHERE song.albumid = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumid FROM song WHERE song.albumid = :id ORDER BY song.name ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -266,7 +266,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongsFromPlaylist($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT playlistSong.id, playlistSong.songid, playlistSong.playlistid FROM playlistSong WHERE playlistSong.playlistId = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlistSong.id, playlistSong.songid, playlistSong.playlistid FROM playlistSong WHERE playlistSong.playlistId = :id ORDER BY playlistSong.name ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
