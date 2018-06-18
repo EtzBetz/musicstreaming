@@ -392,6 +392,51 @@ class DBConnect {
             return false;
         }
     }
+    public static function insertAlbum($name, $artistId, $coverFilename) {
+        DBConnect::getInstance()->connection->beginTransaction();
+
+        $query = DBConnect::getInstance()->connection->prepare("BEGIN");
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO cover(filename) VALUES (:coverFilename)");
+        $query->bindParam(":coverFilename", $coverFilename);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $coverId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $coverId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO album(name, created, artistid, coverid) VALUES(:name, :created, :artistId, :coverId)");
+        $query->bindParam(":name", $name);
+        $time = new DateTime();
+        $time = $time->format("Y-m-d H:i:s");
+        $query->bindParam(":created", $time);
+        $query->bindParam(":artistId", $artistId);
+        $query->bindParam(":coverId", $coverId);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $albumId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $albumId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        $query = DBConnect::getInstance()->connection->prepare("COMMIT;");
+        $query->execute();
+        if (isset ($albumId) && $albumId != null) {
+            return $albumId;
+        } else {
+            return false;
+        }
+    }
     public static function insertLoginAttempt($userId, $time) {
         $query = DBConnect::getInstance()->connection->prepare("INSERT INTO failedLogin(userId, time) VALUES(:userId, :time)");
         $query->bindParam(":userId", $userId);

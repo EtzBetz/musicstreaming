@@ -157,6 +157,29 @@ if (isset($_GET["p"])) {
             $smarty->assign("genres", DBConnect::getGenres());
             $smarty->display('add_song.tpl');
             break;
+        case "add_album":
+            if (isset($_GET["do"])) {
+                switch ($_GET["do"]) {
+                    case "create":
+                        require_once(__DIR__ . "/../resources/models/Album.php");
+                        if (isset($_SESSION["username"], $_SESSION["userId"])) {
+                            if (isset($_POST["title"], $_POST["artist"])) {
+                                $albumTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+                                $albumArtist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_STRING);
+                                try {
+                                    Album::createNewAlbum($albumTitle, $albumArtist);
+                                } catch (Exception $exception) {
+                                    $exception->getMessage();
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            assignInfos($smarty);
+            $smarty->assign("artists", DBConnect::getArtists());
+            $smarty->display('add_album.tpl');
+            break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");
             break;

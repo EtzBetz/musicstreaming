@@ -123,8 +123,6 @@ class Song {
                         InfoList::addInfo(new Info("The file couldn't be saved. Try again or contact us.", "Okay", "", "red"));
                     }
                 }
-
-
     }
 
     protected static function isFileAnImage() {

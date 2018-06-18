@@ -23,7 +23,7 @@
                     <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--plus_circle--light">{$configArr.strings.addContent}</button>
                     <div class="header__dropdown">
                         <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_song}">{$configArr.strings.uploadMusic}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.createAlbum}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_album}">{$configArr.strings.createAlbum}</a>
                         <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.createPlaylist}</a>
                     </div>
                 </div>
