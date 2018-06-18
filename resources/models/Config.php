@@ -36,8 +36,8 @@ class Config {
             "githubProject" => "https://github.com/derRAV3N/musicstreaming",
             "coverDirectory" => "./content_files/images/cover/",
             "musicDirectory" => "./content_files/music/",
-            "coverDirectoryInternal" => "/public_html/content_files/images/cover/",
-            "musicDirectoryInternal" => "/public_html/content_files/music/",
+            "coverDirectoryInternal" => "/musicstreaming/public_html/content_files/images/cover/",
+            "musicDirectoryInternal" => "/musicstreaming/public_html/content_files/music/",
         ),
         "strings" => array(
             "mainTitle" => "Music Streaming",
