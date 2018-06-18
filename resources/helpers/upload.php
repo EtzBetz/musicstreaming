@@ -61,7 +61,7 @@ if (isset($_SESSION["username"], $_SESSION["userId"])) {
         if (!($coverFileExtension == "jpg" | $coverFileExtension == "jpeg" | $coverFileExtension == "png" | $coverFileExtension == "bmp")) {
             $uploadFiles = false;
             echo "debug: cover not correct extension";
-        } else if (!($musicFileExtension == "mp3")) {
+        } else if (!($musicFileExtension == "mp3" | $musicFileExtension == "m4a")) {
             $uploadFiles = false;
             echo "debug: music not correct extension";
         }
