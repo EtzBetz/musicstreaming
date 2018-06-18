@@ -266,7 +266,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongsFromPlaylist($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT playlistSong.id, playlistSong.songid, playlistSong.playlistid FROM playlistSong WHERE playlistSong.playlistId = :id ORDER BY playlistSong.name ASC");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlistSong.id, playlistSong.songid, playlistSong.playlistid FROM playlistSong WHERE playlistSong.playlistId = :id ORDER BY playlistSong.songid ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
