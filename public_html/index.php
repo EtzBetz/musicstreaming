@@ -180,6 +180,27 @@ if (isset($_GET["p"])) {
             $smarty->assign("artists", DBConnect::getArtists());
             $smarty->display('add_album.tpl');
             break;
+        case "add_playlist":
+            if (isset($_GET["do"])) {
+                switch ($_GET["do"]) {
+                    case "create":
+                        require_once(__DIR__ . "/../resources/models/Playlist.php");
+                        if (isset($_SESSION["username"], $_SESSION["userId"])) {
+                            if (isset($_POST["title"])) {
+                                $playlistTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+                                try {
+                                    Playlist::createNewPlaylist($playlistTitle, $_SESSION["userId"]);
+                                } catch (Exception $exception) {
+                                    $exception->getMessage();
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            assignInfos($smarty);
+            $smarty->display('add_playlist.tpl');
+            break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");
             break;

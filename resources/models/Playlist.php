@@ -28,6 +28,12 @@ class Playlist {
         $this->setSongIds(DBConnect::getSongsFromPlaylist($this->getId()));
     }
 
+    public static function createNewPlaylist($playlistTitle, $playlistUser) {
+        $albumId = DBConnect::insertPlaylist($playlistTitle, $playlistUser);
+        header("Location: " . Config::configArr['urls']['base'] . Config::configArr['urls']['playlist'] . "&" . Config::configArr['urls']['id'] . $albumId);
+        die();
+    }
+
     /**
      * @return integer
      */
