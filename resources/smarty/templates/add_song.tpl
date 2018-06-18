@@ -14,6 +14,7 @@
                 </div>
                 <div class="card__column content--set-column">
                     <select id="artist" name="artist" required>
+                        <option value="none" disabled selected>Bitte einen Künstler auswählen</option>
                         {html_options options=$artists}
                     </select>
                 </div>
