@@ -47,6 +47,20 @@
                         <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.songs}</a>
                     </div>
                 </div>
+                <div>
+                    <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal">sample stuff</button>
+                    <div class="header__dropdown">
+                        <a class="button--color-dark button--weight-normal" href="?p=user&id=1">sample user</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=1">sample artist 1</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=2">sample artist 2</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=3">sample artist 3</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=4">sample artist 4</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=song&id=1">sample song w/ album</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=song&id=28">sample song w/o album</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=album&id=1">sample album</a>
+                        <a class="button--color-dark button--weight-normal" href="?p=playlist&id=1">sample playlist</a>
+                    </div>
+                </div>
             </div>
             <div>
                 {if isset($username, $userId)}
