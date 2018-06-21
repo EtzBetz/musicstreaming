@@ -467,6 +467,36 @@ class DBConnect {
             return false;
         }
     }
+    public static function insertArtist($name) {
+        DBConnect::getInstance()->connection->beginTransaction();
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO artist(name) VALUES(:name)");
+        $query->bindParam(":name", $name);
+        $time = new DateTime();
+        $time = $time->format("Y-m-d H:i:s");
+        $query->bindParam(":created", $time);
+        $query->bindParam(":userId", $userId);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $playlistId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $playlistId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        if (isset ($playlistId) && $playlistId != null) {
+            $query = DBConnect::getInstance()->connection->prepare("COMMIT;");
+            $query->execute();
+            return $playlistId;
+        } else {
+            $query = DBConnect::getInstance()->connection->prepare("ROLLBACK;");
+            $query->execute();
+            return false;
+        }
+    }
     public static function insertLoginAttempt($userId, $time) {
         $query = DBConnect::getInstance()->connection->prepare("INSERT INTO failedLogin(userId, time) VALUES(:userId, :time)");
         $query->bindParam(":userId", $userId);

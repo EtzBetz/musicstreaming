@@ -25,6 +25,7 @@
                         <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_song}">{$configArr.strings.uploadMusic}</a>
                         <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_album}">{$configArr.strings.createAlbum}</a>
                         <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_playlist}">{$configArr.strings.createPlaylist}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.add_artist}">{$configArr.strings.createArtist}</a>
                     </div>
                 </div>
                 <div>

@@ -22,6 +22,12 @@ class Artist {
         $this->name = $data["name"];
     }
 
+    public static function createNewArtist($name) {
+        $albumId = DBConnect::insertArtist($name);
+        header("Location: " . Config::configArr['urls']['base'] . Config::configArr['urls']['artist'] . "&" . Config::configArr['urls']['id'] . $albumId);
+        die();
+    }
+
     /**
      * @return mixed
      */

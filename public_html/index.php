@@ -201,6 +201,27 @@ if (isset($_GET["p"])) {
             assignInfos($smarty);
             $smarty->display('add_playlist.tpl');
             break;
+        case "add_artist":
+            if (isset($_GET["do"])) {
+                switch ($_GET["do"]) {
+                    case "create":
+                        require_once(__DIR__ . "/../resources/models/Artist.php");
+                        if (isset($_SESSION["username"], $_SESSION["userId"])) {
+                            if (isset($_POST["name"])) {
+                                $artistName = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+                                try {
+                                    Artist::createNewArtist($artistName);
+                                } catch (Exception $exception) {
+                                    $exception->getMessage();
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            assignInfos($smarty);
+            $smarty->display('add_artist.tpl');
+            break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");
             break;
