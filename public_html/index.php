@@ -123,9 +123,18 @@ if (isset($_GET["p"])) {
             break;
         case "user":
             require_once(__DIR__ . "/../resources/models/User.php");
+            require_once(__DIR__ . "/../resources/models/Playlist.php");
             if (isset($_GET["id"])) {
                 $user = new User($_GET["id"]);
                 $smarty->assign("user", $user);
+
+                $playlists = array();
+                $playlistIds = DBConnect::getPlaylistsFromUser($user->getId());
+                for ($i = 0; $i < count($playlistIds); $i++){
+                    $playlists[] = new Playlist($playlistIds[$i]);
+                }
+                $smarty->assign("playlists", $playlists);
+
             }
             $smarty->display('user.tpl');
             break;

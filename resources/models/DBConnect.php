@@ -316,6 +316,23 @@ class DBConnect {
         }
         return $data;
     }
+    public static function getPlaylistsFromUser($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id FROM playlist WHERE playlist.userid = :id ORDER BY playlist.name ASC");
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[] = $row['id'];
+            }
+        }
+        return $data;
+    }
 
     public static function getUserIdFromEmail($email) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT user.id FROM user WHERE user.email = :email");
