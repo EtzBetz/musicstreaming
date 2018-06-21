@@ -507,12 +507,32 @@ class DBConnect {
             return true;
         } else return false;
     }
+    public static function insertHistory($userId, $songId) {
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO history(userid, songid, visited) VALUES(:userId, :songId, :visited)");
+        $query->bindParam(":userId", $userId);
+        $query->bindParam(":songId", $songId);
+        $time = new DateTime();
+        $time = $time->format("Y-m-d H:i:s");
+        $query->bindParam(":visited", $time);
+        $query->execute();
+
+        if($query) {
+            return true;
+        } else return false;
+    }
 
 
     public static function getNumberOfLoginAttempts($userId, DateTime $timeSpan) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT failedLogin.id, failedLogin.userId, failedLogin.time FROM failedLogin WHERE failedLogin.userId = :userId AND failedLogin.time > :timeSpan");
         $query->bindParam(":userId", $userId);
         $query->bindParam(":timeSpan", $timeSpan->getTimestamp() );
+        $query->execute();
+
+        return $query->rowCount();
+    }
+    public static function getNumberOfVisits($songId) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT history.songid FROM history WHERE history.songId = :songId GROUP BY history.userid");
+        $query->bindParam(":songId", $songId);
         $query->execute();
 
         return $query->rowCount();

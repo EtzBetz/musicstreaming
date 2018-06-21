@@ -72,6 +72,9 @@ if (isset($_GET["p"])) {
                 $smarty->assign("cover", $cover);
             }
             $smarty->display('song.tpl');
+            if (isset($_SESSION["userId"])) {
+                DBConnect::insertHistory($_SESSION["userId"], $song->getId());
+            }
             break;
         case "album":
             require_once(__DIR__ . "/../resources/models/Album.php");

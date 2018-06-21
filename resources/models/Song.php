@@ -32,7 +32,7 @@ class Song {
 
         $this->name = $data["name"];
         $this->filename = $data["filename"];
-        $this->visits = $data["visits"];
+        $this->visits = DBConnect::getNumberOfVisits($this->getId());
         $this->created = $data["created"];
         $this->userId = $data["userId"];
         $this->artistId = $data["artistId"];
