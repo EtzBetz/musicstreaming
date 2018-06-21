@@ -229,7 +229,24 @@ class DBConnect {
         }
         return $data;
     }
-    public static function getAlbumFromArtist($id) {
+    public static function getSingles() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name FROM song WHERE song.albumid IS NULL ORDER BY song.name ASC");
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[$row['id']] = $row['name'];
+            }
+        }
+        return $data;
+    }
+
+    public static function getAlbumsFromArtist($id) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT album.id, album.name, album.artistid FROM album WHERE album.artistid = :id ORDER BY album.name ASC");
         $query->bindParam(":id", $id);
         $query->execute();
@@ -282,7 +299,23 @@ class DBConnect {
         }
         return $data;
     }
+    public static function getSinglesFromArtist($id) {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id FROM song WHERE song.albumid IS NULL AND song.artistid = :id ORDER BY song.name ASC");
+        $query->bindParam(":id", $id);
+        $query->execute();
 
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                $data[] = $row['id'];
+            }
+        }
+        return $data;
+    }
 
     public static function getUserIdFromEmail($email) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT user.id FROM user WHERE user.email = :email");

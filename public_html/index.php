@@ -101,9 +101,23 @@ if (isset($_GET["p"])) {
             break;
         case "artist":
             require_once(__DIR__ . "/../resources/models/Artist.php");
+            require_once(__DIR__ . "/../resources/models/Album.php");
+            require_once(__DIR__ . "/../resources/models/Song.php");
             if (isset($_GET["id"])) {
                 $artist = new Artist($_GET["id"]);
+                $albums = array();
+                $albumIds = DBConnect::getAlbumsFromArtist($artist->getId());
+                for ($i = 0; $i < count($albumIds); $i++){
+                    $albums[] = new Album($albumIds[$i]['id']);
+                }
+                $singles = array();
+                $singleIds = DBConnect::getSinglesFromArtist($artist->getId());
+                for ($i = 0; $i < count($singleIds); $i++){
+                    $singles[] = new Song($singleIds[$i]);
+                }
                 $smarty->assign("artist", $artist);
+                $smarty->assign("albums", $albums);
+                $smarty->assign("singles", $singles);
             }
             $smarty->display('artist.tpl');
             break;

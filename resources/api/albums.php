@@ -8,7 +8,7 @@
 
 header ('Content-type:application/json');
 if (isset($_GET["artistid"])) {
-    echo json_encode(DBConnect::getAlbumFromArtist($_GET["artistid"]));
+    echo json_encode(DBConnect::getAlbumsFromArtist($_GET["artistid"]));
 } else {
     echo json_encode(DBConnect::getAlbums());
 }
