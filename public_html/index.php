@@ -56,11 +56,16 @@ if (isset($_GET["p"])) {
             require_once(__DIR__ . "/../resources/models/Artist.php");
             require_once(__DIR__ . "/../resources/models/User.php");
             require_once(__DIR__ . "/../resources/models/Cover.php");
+            require_once(__DIR__ . "/../resources/models/Album.php");
             if (isset($_GET["id"])) {
                 $song = new Song($_GET["id"]);
                 $artist = new Artist($song->getArtistId());
                 $user = new User($song->getUserId());
                 $cover = new Cover($song->getCoverId());
+                if ($song->getAlbumId() !== null) {
+                    $album = new Album($song->getAlbumId());
+                    $smarty->assign("album", $album);
+                }
                 $smarty->assign("song", $song);
                 $smarty->assign("artist", $artist);
                 $smarty->assign("user", $user);

@@ -58,11 +58,20 @@
 }
 
 .song__date-uploader {
-    padding: 16px 8px 0 8px;
+    padding: 8px 8px 4px 8px;
+    color: #888888;
+}
+
+.song__album__suffix {
+    padding: 4px 8px 4px 8px;
     color: #888888;
 }
 
 .song__uploader {
+    color: #383838;
+}
+
+.song__album {
     color: #383838;
 }
 

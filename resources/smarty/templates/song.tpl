@@ -14,9 +14,11 @@
                     <span class="song__visits content--left-align"><span class="song__visits__number">{$song->getVisits()}</span><span class="song__visits__suffix">{if $song->getVisits() == 1} Aufruf{else} Aufrufe{/if}</span>
                 </p>
                 <p class="song__date-uploader content--right-align">Am <span class="song__date">{$song->getCreated()}</span> von <a class="song__uploader button--add-underline button--reset-uppercase" href="{$configArr.urls.user}&{$configArr.urls.id}{$user->getId()}">{$user->getUsername()}</a> hochgeladen</p>
+                {if !is_null($song->getAlbumId())}
+                    <p class="song__album__suffix content--right-align">Gehört zum Album <a class="song__album button--add-underline button--reset-uppercase" href="{$configArr.urls.album}&{$configArr.urls.id}{$album->getId()}">{$album->getName()}</a></p>
+                {/if}
                 <p class="song__songtext-button content--center-align svg-icon svg-baseline icon--chevron_down--dark" id="song__songtext-button" onclick="toggleSongtext()">Songtext anzeigen</p>
                 <p class="song__songtext content--center-align">{$song->getSongtext()}</p>
-                <p class="content--left-align">{$song->getAlbumId()}</p>
             {else}
                 <p class="text--title content--center-align">Interner Fehler.</p>
             {/if}
