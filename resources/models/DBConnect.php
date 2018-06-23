@@ -317,7 +317,7 @@ class DBConnect {
         return $data;
     }
     public static function getPlaylistsFromUser($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id FROM playlist WHERE playlist.userid = :id ORDER BY playlist.name ASC");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id, playlist.name FROM playlist WHERE playlist.userid = :id ORDER BY playlist.name ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -328,7 +328,7 @@ class DBConnect {
             $data = array();
 
             while ($row = $query->fetch()) {
-                $data[] = $row['id'];
+                $data[$row['id']] = $row['name'];
             }
         }
         return $data;
@@ -517,30 +517,53 @@ class DBConnect {
             return false;
         }
     }
-    public static function insertArtist($name) {
+    public static function insertPlaylistSong($songId, $playlistId) {
         DBConnect::getInstance()->connection->beginTransaction();
 
-        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO artist(name) VALUES(:name)");
-        $query->bindParam(":name", $name);
-        $time = new DateTime();
-        $time = $time->format("Y-m-d H:i:s");
-        $query->bindParam(":created", $time);
-        $query->bindParam(":userId", $userId);
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO playlistSong(songid, playlistid) VALUES(:songId, :playlistId)");
+        $query->bindParam(":songId", $songId);
+        $query->bindParam(":playlistId", $playlistId);
         $query->execute();
 
         $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
         $query->execute();
-        $playlistId = null;
+        $Id = null;
         if($query->rowCount() == 1) {
             while ($row = $query->fetch()) {
-                $playlistId = ($row['LAST_INSERT_ID()']);
+                $Id = ($row['LAST_INSERT_ID()']);
             }
         }
 
         if (isset ($playlistId) && $playlistId != null) {
             $query = DBConnect::getInstance()->connection->prepare("COMMIT;");
             $query->execute();
-            return $playlistId;
+            return $Id;
+        } else {
+            $query = DBConnect::getInstance()->connection->prepare("ROLLBACK;");
+            $query->execute();
+            return false;
+        }
+    }
+    public static function insertArtist($name) {
+        DBConnect::getInstance()->connection->beginTransaction();
+
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO artist(name) VALUES(:name)");
+        $query->bindParam(":name", $name);
+        $query->execute();
+
+        $query = DBConnect::getInstance()->connection->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $artistId = null;
+        if($query->rowCount() == 1) {
+            while ($row = $query->fetch()) {
+                $artistId = ($row['LAST_INSERT_ID()']);
+            }
+        }
+
+        if (isset ($artistId) && $artistId != null) {
+            $query = DBConnect::getInstance()->connection->prepare("COMMIT;");
+            $query->execute();
+            return $artistId;
         } else {
             $query = DBConnect::getInstance()->connection->prepare("ROLLBACK;");
             $query->execute();

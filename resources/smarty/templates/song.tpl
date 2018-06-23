@@ -17,6 +17,15 @@
                 {if !is_null($song->getAlbumId())}
                     <p class="song__album__suffix content--right-align">Gehört zum Album <a class="song__album button--add-underline button--reset-uppercase" href="{$configArr.urls.album}&{$configArr.urls.id}{$album->getId()}">{$album->getName()}</a></p>
                 {/if}
+                {if isset($playlists)}
+                    <form class="song__add-playlist content--set-column" action="{$configArr.urls.song}&{$configArr.urls.id}{$song->getId()}&{$configArr.urls.do}addToPlaylist" method="post"> {* TODO: fix the action url to not be static, since maybe there will be additional GET parameters *}
+                        <p>Zu einer Playlist hinzufügen:</p>
+                        <select title="playlist" id="playlist" name="playlist">{html_options options=$playlists}</select>
+                        <div>
+                            <button class="card__button--submit button--small" type="submit">{$configArr.strings.add}</button>
+                        </div>
+                    </form>
+                {/if}
                 <p class="song__songtext-button content--center-align svg-icon svg-baseline icon--chevron_down--dark" id="song__songtext-button" onclick="toggleSongtext()">Songtext anzeigen</p>
                 <p class="song__songtext content--center-align">{$song->getSongtext()}</p>
             {else}

@@ -57,19 +57,36 @@ if (isset($_GET["p"])) {
             require_once(__DIR__ . "/../resources/models/User.php");
             require_once(__DIR__ . "/../resources/models/Cover.php");
             require_once(__DIR__ . "/../resources/models/Album.php");
+            require_once(__DIR__ . "/../resources/models/Playlist.php");
             if (isset($_GET["id"])) {
+                if (isset($_GET["do"])){
+                    switch ($_GET["do"]) {
+                        case "addToPlaylist":
+                            DBConnect::insertPlaylistSong($_GET['id'], $_POST['playlist']);
+                            break;
+                    }
+                }
                 $song = new Song($_GET["id"]);
+                $smarty->assign("song", $song);
+
                 $artist = new Artist($song->getArtistId());
+                $smarty->assign("artist", $artist);
+
                 $user = new User($song->getUserId());
+                $smarty->assign("user", $user);
+
                 $cover = new Cover($song->getCoverId());
+                $smarty->assign("cover", $cover);
+
                 if ($song->getAlbumId() !== null) {
                     $album = new Album($song->getAlbumId());
                     $smarty->assign("album", $album);
                 }
-                $smarty->assign("song", $song);
-                $smarty->assign("artist", $artist);
-                $smarty->assign("user", $user);
-                $smarty->assign("cover", $cover);
+
+                if (isset($_SESSION["userId"])) {
+                    $smarty->assign("playlists", DBConnect::getPlaylistsFromUser($_SESSION["userId"]));
+                }
+
             }
             $smarty->display('song.tpl');
             if (isset($_SESSION["userId"])) {
@@ -128,10 +145,10 @@ if (isset($_GET["p"])) {
                 $user = new User($_GET["id"]);
                 $smarty->assign("user", $user);
 
-                $playlists = array();
                 $playlistIds = DBConnect::getPlaylistsFromUser($user->getId());
-                for ($i = 0; $i < count($playlistIds); $i++){
-                    $playlists[] = new Playlist($playlistIds[$i]);
+                $playlists = array();
+                foreach($playlistIds as $id=>$value) {
+                    $playlists[] = new Playlist($id);
                 }
                 $smarty->assign("playlists", $playlists);
 
@@ -280,7 +297,7 @@ if (isset($_GET["p"])) {
 
 function checkCookieAgreement() {
     if(!isset($_COOKIE["cookiesAccepted"]) || (isset($_COOKIE["cookiesAccepted"]) && $_COOKIE["cookiesAccepted"] != 1)) {
-        InfoList::addInfo(new Info(Config::configArr["strings"]["cookieText"], Config::configArr["strings"]["cookieButton"], "","green"));
+        InfoList::addInfo(new Info(Config::configArr["strings"]["cookieText"], Config::configArr["strings"]["cookieButton"], "","green")); // TODO: fix additional actions like setting the cookie
     }
 }
 

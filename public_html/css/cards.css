@@ -123,3 +123,11 @@
     border-color: #8BC34A;
     color: white;
 }
+
+/* SUBMIT BUTTON IN SMALL VARIANT */
+.button--small {
+    font-size: 12pt;
+    min-width: 200px;
+    padding: 2px 4px 2px;
+    letter-spacing: initial;
+}
