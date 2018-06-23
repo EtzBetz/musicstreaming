@@ -29,14 +29,6 @@
                     </div>
                 </div>
                 <div>
-                    <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--star_circle--light">{$configArr.strings.favorites}</button>
-                    <div class="header__dropdown">
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.musictitles}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.albums}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.playlists}</a>
-                    </div>
-                </div>
-                <div>
                     <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--cloud_circle--light">{$configArr.strings.api}</button>
                     <div class="header__dropdown">
                         <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.overview}</a>
