@@ -118,6 +118,7 @@ class Config {
                 "add_album" => "Album hinzufügen",
                 "add_playlist" => "Playlist erstellen",
                 "add_artist" => "Künstler hinzufügen",
+                "api_overview" => "Übersicht über die API",
             ),
         ),
     );

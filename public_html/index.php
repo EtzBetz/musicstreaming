@@ -369,6 +369,9 @@ if (isset($_GET["p"])) {
             assignInfos($smarty);
             $smarty->display('add_artist.tpl');
             break;
+        case "api_overview":
+            $smarty->display('api_overview.tpl');
+            break;
         case "api_artists":
             require_once(__DIR__ . "/../resources/api/artists.php");
             break;
