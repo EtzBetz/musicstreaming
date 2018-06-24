@@ -1,8 +1,10 @@
 {include file="header.tpl"}
 <div class="content--set-column">
-    <div class="content--set-row content--center-align">
-        <span class="text--title">Jetzt registrieren und deine Musik mit der Community teilen!</span>
-    </div>
+    {if !isset($username, $userId)}
+        <div class="content--set-row content--center-align">
+            <span class="text--title index__title">Jetzt registrieren und deine Musik mit der Community teilen!</span>
+        </div>
+    {/if}
     <div class="content--set-row">
         <span class="text--title">Derzeit beliebte Inhalte</span>
     </div>

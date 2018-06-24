@@ -31,26 +31,12 @@
                 <div>
                     <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--cloud_circle--light">{$configArr.strings.api}</button>
                     <div class="header__dropdown">
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.overview}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.albums}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.artists}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.genres}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.playlists}</a>
-                        <a class="button--color-dark button--weight-normal" href="#">{$configArr.strings.songs}</a>
-                    </div>
-                </div>
-                <div>
-                    <button class="header__dropbutton button--color-light button--bgcolor-light button--weight-normal">sample stuff</button>
-                    <div class="header__dropdown">
-                        <a class="button--color-dark button--weight-normal" href="?p=user&id=1">sample user</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=1">sample artist 1</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=2">sample artist 2</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=3">sample artist 3</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=artist&id=4">sample artist 4</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=song&id=1">sample song w/ album</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=song&id=28">sample song w/o album</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=album&id=1">sample album</a>
-                        <a class="button--color-dark button--weight-normal" href="?p=playlist&id=1">sample playlist</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_overview}">{$configArr.strings.overview}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_albums}">{$configArr.strings.albums}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_artists}">{$configArr.strings.artists}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_genres}">{$configArr.strings.genres}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_playlists}">{$configArr.strings.playlists}</a>
+                        <a class="button--color-dark button--weight-normal" href="{$configArr.urls.api_songs}">{$configArr.strings.songs}</a>
                     </div>
                 </div>
             </div>

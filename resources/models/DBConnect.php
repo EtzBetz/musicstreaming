@@ -679,7 +679,6 @@ class DBConnect {
         } else return false;
     }
 
-
     public static function getNumberOfLoginAttempts($userId, DateTime $timeSpan) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT failedLogin.id, failedLogin.userId, failedLogin.time FROM failedLogin WHERE failedLogin.userId = :userId AND unix_timestamp(failedLogin.time) > :timeSpan");
         $query->bindParam(":userId", $userId);
@@ -791,7 +790,6 @@ class DBConnect {
         } else
             return true;
     }
-
 
     public static function getLastCreatedAccountId() {
         return DBConnect::getInstance()->connection->lastInsertId();
