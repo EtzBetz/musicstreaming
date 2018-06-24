@@ -363,6 +363,91 @@ class DBConnect {
         }
     }
 
+    public static function searchForSongs($songName){
+        $songName = "%" . $songName . "%";
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id FROM song WHERE song.name LIKE :songName ORDER BY song.name ASC");
+        $query->bindParam(":songName", $songName);
+        $query->execute();
+
+        $data = array();
+
+        if($query->rowCount() >= 1) {
+            while ($row = $query->fetch()) {
+                $data[] = ($row['id']);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+    public static function searchForAlbums($albumName){
+        $albumName = "%" . $albumName . "%";
+        $query = DBConnect::getInstance()->connection->prepare("SELECT album.id FROM album WHERE album.name LIKE :albumName ORDER BY album.name ASC");
+        $query->bindParam(":albumName", $albumName);
+        $query->execute();
+
+        $data = array();
+
+        if($query->rowCount() >= 1) {
+            while ($row = $query->fetch()) {
+                $data[] = ($row['id']);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+    public static function searchForPlaylists($playlistName){
+        $playlistName = "%" . $playlistName . "%";
+        $query = DBConnect::getInstance()->connection->prepare("SELECT playlist.id FROM playlist WHERE playlist.name LIKE :playlistName ORDER BY playlist.name ASC");
+        $query->bindParam(":playlistName", $playlistName);
+        $query->execute();
+
+        $data = array();
+
+        if($query->rowCount() >= 1) {
+            while ($row = $query->fetch()) {
+                $data[] = ($row['id']);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+    public static function searchForArtists($artistName){
+        $artistName = "%" . $artistName . "%";
+        $query = DBConnect::getInstance()->connection->prepare("SELECT artist.id FROM artist WHERE artist.name LIKE :artistName ORDER BY artist.name ASC");
+        $query->bindParam(":artistName", $artistName);
+        $query->execute();
+
+        $data = array();
+
+        if($query->rowCount() >= 1) {
+            while ($row = $query->fetch()) {
+                $data[] = ($row['id']);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+    public static function searchForUsers($userName){
+        $userName = "%" . $userName . "%";
+        $query = DBConnect::getInstance()->connection->prepare("SELECT user.id FROM user WHERE user.username LIKE :userName ORDER BY user.username ASC");
+        $query->bindParam(":userName", $userName);
+        $query->execute();
+
+        $data = array();
+
+        if($query->rowCount() >= 1) {
+            while ($row = $query->fetch()) {
+                $data[] = ($row['id']);
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
 
     public static function insertUser($email, $username, $password, $salt) {
         $query = DBConnect::getInstance()->connection->prepare("INSERT INTO user(email, username, password, salt, created) VALUES(:email, :username, :password, :salt, :created)");

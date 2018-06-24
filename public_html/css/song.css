@@ -2,8 +2,8 @@
 .song__cover {
     width: 100%;
     height: auto;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 600px;
+    max-height: 600px; /* TODO: fix card not getting bigger when titles getting longer, afterwards set back to 500px  */
 }
 
 .song__controls {

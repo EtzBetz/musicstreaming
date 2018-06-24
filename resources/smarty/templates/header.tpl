@@ -63,6 +63,12 @@
                     <a class="header__button button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--login--light" href="{$configArr.urls.login}">{$configArr.strings.login}</a>
                 {/if}
             </div>
+            <div>
+                <form class="header__search" action="{$configArr.urls.search}&{$configArr.urls.do}search" method="post">
+                    <input class="header__search__input" name="searchString" title="searchString" required/>
+                    <button class="header__button button--color-light button--bgcolor-light button--weight-normal svg-icon svg-baseline icon--search--light" type="submit"></button>
+                </form>
+            </div>
         </div>
         <div class="info">
             {include file="info.tpl"}

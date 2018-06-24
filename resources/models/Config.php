@@ -34,6 +34,7 @@ class Config {
             "album" => "?p=album",
             "playlist" => "?p=playlist",
             "artist" => "?p=artist",
+            "search" => "?p=search",
             "add_song" => "?p=add_song",
             "add_album" => "?p=add_album",
             "add_playlist" => "?p=add_playlist",
