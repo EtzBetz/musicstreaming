@@ -31,7 +31,10 @@ if (isset($_POST['email'], $_POST['username'], $_POST['password'])) {
         $password = hash('sha512', $password . $random_salt);
 
         if (DBConnect::insertUser($email, $username, $password, $random_salt)) {
-            header('Location: .' . Config::configArr["urls"]["user"] . "&id=" . DBConnect::getUserIdFromEmail($email)); // TODO: redirect to userpage of newly created user
+            $user = new User(DBConnect::getUserIdFromEmail($email));
+            $_SESSION['userId'] = $user->getId();
+            $_SESSION['username'] = $user->getUsername();
+            header('Location: .' . Config::configArr["urls"]["user"] . "&id=" . DBConnect::getUserIdFromEmail($email));
         }   // TODO: sign in user because our activity diagram says so..
     }
 } else {

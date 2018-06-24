@@ -10,7 +10,7 @@
 if (isset($_POST['email'], $_POST['password'])) {
     if (login($_POST['email'], $_POST['password']) == true) {
         // Login successful
-        header('Location: ../public_html/index.php'); // TODO: redirect to some page, index viable?
+        header('Location: .' . Config::configArr["urls"]["user"] . "&id=" . $_SESSION['userId']);
     } else {
         // Login failed
         InfoList::addInfo(new Info("Login failed. Password is wrong or the user doesn't exist.", "I'll try again", Config::configArr["urls"]["login"], "yellow"));

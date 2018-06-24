@@ -596,9 +596,9 @@ class DBConnect {
 
 
     public static function getNumberOfLoginAttempts($userId, DateTime $timeSpan) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT failedLogin.id, failedLogin.userId, failedLogin.time FROM failedLogin WHERE failedLogin.userId = :userId AND failedLogin.time > :timeSpan");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT failedLogin.id, failedLogin.userId, failedLogin.time FROM failedLogin WHERE failedLogin.userId = :userId AND unix_timestamp(failedLogin.time) > :timeSpan");
         $query->bindParam(":userId", $userId);
-        $query->bindParam(":timeSpan", $timeSpan->getTimestamp() );
+        $query->bindParam(":timeSpan", $timeSpan->getTimestamp());
         $query->execute();
 
         return $query->rowCount();
