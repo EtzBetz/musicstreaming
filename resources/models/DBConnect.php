@@ -610,6 +610,82 @@ class DBConnect {
 
         return $query->rowCount();
     }
+    public static function getPopularSingles() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT history.songid, COUNT(*) as views FROM history LEFT JOIN song ON history.songId = song.id WHERE song.albumid IS NULL AND unix_timestamp(history.visited) > :timeSpan GROUP BY history.songid, history.userid ORDER BY history.songid ASC");
+        $timeSpan = new DateTime();
+        $timeSpan->format("Y-m-d\TH:i:sP");
+        $timeSpan->modify("-7 day");
+        $query->bindValue(":timeSpan", $timeSpan->getTimestamp());
+        $query->execute();
+
+        $data = null;
+
+        if($query->rowCount() >= 1) {
+
+            $data = array();
+
+            while ($row = $query->fetch()) {
+                if (isset($data[$row['songid']])) {
+                    if (is_integer($data[$row['songid']])) {
+                        $data[$row['songid']]++;
+                    } else {
+                        $data[$row['songid']] = 1;
+                    }
+                } else {
+                    $data[$row['songid']] = 1;
+                }
+            }
+        }
+        arsort($data);
+        return $data;
+    }
+    public static function getPopularAlbums() {
+        $query = DBConnect::getInstance()->connection->prepare("SELECT history.songid, COUNT(*) as views FROM history LEFT JOIN song ON history.songId = song.id WHERE song.albumid IS NOT NULL AND unix_timestamp(history.visited) > :timeSpan GROUP BY history.songid, history.userid ORDER BY history.songid ASC");
+        $timeSpan = new DateTime();
+        $timeSpan->format("Y-m-d\TH:i:sP");
+        $timeSpan->modify("-7 day");
+        $query->bindValue(":timeSpan", $timeSpan->getTimestamp());
+        $query->execute();
+
+        $rawDataSongs = null;
+
+        if($query->rowCount() >= 1) {
+
+            $rawDataSongs = array();
+
+            while ($row = $query->fetch()) {
+                if (isset($rawDataSongs[$row['songid']])) {
+                    if (is_integer($rawDataSongs[$row['songid']])) {
+                        $rawDataSongs[$row['songid']] ++;
+                    } else {
+                        $rawDataSongs[$row['songid']] = 1;
+                    }
+                } else {
+                    $rawDataSongs[$row['songid']] = 1;
+                }
+            }
+        }
+
+        $rawDataAlbums = array();
+        foreach ($rawDataSongs as $songId => $visits) {
+            $songAlbum = DBConnect::getSongAttributes($songId)['albumId'];
+            if (isset($rawDataAlbums[$songAlbum]['visits'], $rawDataAlbums[$songAlbum]['songCount'])) {
+                $rawDataAlbums[$songAlbum]['visits'] += $visits;
+                $rawDataAlbums[$songAlbum]['songCount'] ++;
+            } else {
+                $rawDataAlbums[$songAlbum]['visits'] = $visits;
+                $rawDataAlbums[$songAlbum]['songCount'] = 1;
+            }
+        }
+
+        $data = array();
+        foreach ($rawDataAlbums as $albumId => $visitsAndSongCountArr) {
+            $data[$albumId] = intval(($visitsAndSongCountArr['visits'] / $visitsAndSongCountArr['songCount']));
+        }
+
+        arsort($data);
+        return $data;
+    }
     public static function checkIfEmailExists($email) {
         $query = DBConnect::getInstance()->connection->prepare("SELECT user.id FROM user WHERE user.email = :email LIMIT 1");
         $query->bindParam(":email", $email);

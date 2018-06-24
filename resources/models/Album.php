@@ -13,6 +13,7 @@ class Album {
     protected $artistId;
     protected $coverId;
     protected $songIds;
+    protected $songVisits;
 
     /**
      * Album constructor.
@@ -28,6 +29,14 @@ class Album {
         $this->setArtistId($albumData['artistId']);
         $this->setCoverId($albumData['coverId']);
         $this->setSongIds(DBConnect::getSongsFromAlbum($this->getId()));
+        $songVisits = 0;
+        $songIds = $this->getSongIds();
+        if (isset($songIds)) {
+            foreach ($songIds as $songId) {
+                $songVisits += DBConnect::getNumberOfVisits($songId);
+            }
+        }
+        $this->setSongVisits($songVisits);
     }
 
 
@@ -145,6 +154,12 @@ class Album {
         $this->artistId = $id;
     }
 
+
+    public function getCover() {
+        require_once (__DIR__ . "/Cover.php");
+        return new Cover($this->getCoverId());
+    }
+
     /**
      * @return mixed
      */
@@ -178,6 +193,20 @@ class Album {
      */
     public function addSongId($songId) {
         $this->songIds[] = $songId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSongVisits() {
+        return $this->songVisits;
+    }
+
+    /**
+     * @param mixed $songVisits
+     */
+    public function setSongVisits($songVisits) {
+        $this->songVisits = $songVisits;
     }
 
 

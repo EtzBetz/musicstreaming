@@ -41,6 +41,7 @@ if (isset($_GET["p"])) {
             $smarty->display('login.tpl');
             break;
         case "register":
+            require_once(__DIR__ . "/../resources/models/User.php");
             $smarty->display('register.tpl');
             break;
         case "registering":
@@ -147,8 +148,10 @@ if (isset($_GET["p"])) {
 
                 $playlistIds = DBConnect::getPlaylistsFromUser($user->getId());
                 $playlists = array();
-                foreach($playlistIds as $id=>$value) {
-                    $playlists[] = new Playlist($id);
+                if ($playlistIds !== null) {
+                    foreach ($playlistIds as $id => $value) {
+                        $playlists[] = new Playlist($id);
+                    }
                 }
                 $smarty->assign("playlists", $playlists);
 
@@ -170,7 +173,6 @@ if (isset($_GET["p"])) {
                 for ($i = 0; $i < count($songIds); $i++) {
                     $songs[] = new Song($songIds[$i]);
                 }
-//                var_dump($playlist);
                 $smarty->assign("playlist", $playlist);
                 $smarty->assign("user", $user);
                 $smarty->assign("songs", $songs);
@@ -289,7 +291,85 @@ if (isset($_GET["p"])) {
             $smarty->display('404.tpl');
     }
 } else {
+    require_once(__DIR__ . "/../resources/models/Album.php");
+    require_once(__DIR__ . "/../resources/models/Song.php");
+    require_once(__DIR__ . "/../resources/models/Playlist.php");
     $smarty->assign("page", "index");
+
+    $albumIds = DBConnect::getAlbums();
+    $albums = array();
+    if ($albumIds !== null) {
+        foreach ($albumIds as $id => $value) {
+            $albums[] = new Album($id);
+        }
+        usort($albums, function($albumA, $albumB) {
+            $albumADate = new DateTime($albumA->getCreated());
+            $albumBDate = new DateTime($albumB->getCreated());
+            if ($albumADate == $albumBDate) {
+                return 0;
+            }
+            return $albumADate > $albumBDate ? -1 : 1;
+        });
+    }
+    $smarty->assign("albums", $albums);
+
+
+    $songIds = DBConnect::getSingles();
+    $songs = array();
+    if ($songIds !== null) {
+        foreach ($songIds as $id => $value) {
+            $songs[] = new Song($id);
+        }
+        usort($songs, function($songA, $songB) {
+            $songADate = new DateTime($songA->getCreated());
+            $songBDate = new DateTime($songB->getCreated());
+            if ($songADate == $songBDate) {
+                return 0;
+            }
+            return $songADate > $songBDate ? -1 : 1;
+        });
+    }
+    $smarty->assign("songs", $songs);
+
+
+    $playlistIds = DBConnect::getPlaylists();
+    $playlists = array();
+    if ($playlistIds !== null) {
+        foreach ($playlistIds as $id => $value) {
+            $playlists[] = new Playlist($id);
+        }
+        usort($playlists, function($playlistA, $playlistB) {
+            $playlistADate = new DateTime($playlistA->getCreated());
+            $playlistBDate = new DateTime($playlistB->getCreated());
+            if ($playlistADate == $playlistBDate) {
+                return 0;
+            }
+            return $playlistADate > $playlistBDate ? -1 : 1;
+        });
+    }
+    $smarty->assign("playlists", $playlists);
+
+
+    $popularSingleIdsVisits = DBConnect::getPopularSingles();
+    $popularSingles = array();
+    $i = 0;
+    foreach ($popularSingleIdsVisits as $id => $value) {
+        $popularSingles[$i] = new Song($id);
+        $i++;
+    }
+    $smarty->assign("popularSingleIdsVisits", $popularSingleIdsVisits);
+    $smarty->assign("popularSingles", $popularSingles);
+
+    $popularAlbumIdsVisits = DBConnect::getPopularAlbums();
+    $popularAlbums = array();
+    $i = 0;
+    foreach ($popularAlbumIdsVisits as $id => $avgVisits) {
+        $popularAlbums[$i] = new Album($id);
+        $i++;
+    }
+    $smarty->assign("popularAlbumIdsVisits", $popularAlbumIdsVisits);
+    $smarty->assign("popularAlbums", $popularAlbums);
+
     assignInfos($smarty);
     $smarty->display('index.tpl');
 }
