@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <div class="content--set-column content--center-align div--flex-full">
     <div class="content--set-row content--center-align">
-        <div class="card">
+        <div class="card card--no-padding">
             {if isset($album) && isset($artist) && isset($cover) && isset($songs)}
                 <div><img class="song__cover" src="{$configArr["urls"]["coverDirectory"]}{$cover->getFilename()}"/></div>
                 <div><p class="text--title content--center-align">{$album->getName()}</p></div>
