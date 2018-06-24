@@ -111,6 +111,10 @@ class Playlist {
         $this->songIds[] = $songId;
     }
 
-
+    public function getSong($index) {
+        require_once (__DIR__ . "/Song.php");
+        $songIds = $this->getSongIds();
+        return new Song($songIds[$index]);
+    }
 
 }

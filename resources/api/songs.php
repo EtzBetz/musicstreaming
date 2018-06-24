@@ -6,4 +6,5 @@
  * Time: 14:34
  */
 
+header ('Content-type:application/json');
 echo json_encode(DBConnect::getSongs());

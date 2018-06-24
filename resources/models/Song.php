@@ -310,6 +310,11 @@ class Song {
         $this->coverId = $coverId;
     }
 
+    public function getCover() {
+        require_once (__DIR__ . "/Cover.php");
+        return new Cover($this->getCoverId());
+    }
+
     /**
      * @return mixed
      */

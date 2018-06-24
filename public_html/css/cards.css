@@ -4,7 +4,30 @@
     padding: 16px;
     margin: 40px 20px;
     box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.15);
+    transition: all .2s;
 }
+
+.card--small {
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    margin: 10px 15px;
+    max-width: 210px;
+}
+
+.card--small:hover {
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.card--small > img {
+    transition: all .2s;
+    box-shadow: 0 4px 150px 0 rgba(0, 0, 0, 0.0);
+}
+
+/*.card--small:hover > img {
+    box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.15);
+    transform: translateY(-15px) translateX(3px) scale(1.1) rotate(5deg);
+    border-radius: 100px;
+}*/
 
 .card--no-padding {
     padding: 0;

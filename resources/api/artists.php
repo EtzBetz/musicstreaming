@@ -6,4 +6,5 @@
  * Time: 14:08
  */
 
+header ('Content-type:application/json');
 echo json_encode(DBConnect::getArtists());
