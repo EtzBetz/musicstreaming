@@ -25,6 +25,7 @@ function hideInfo(infoCard){
         infoCard.remove();
     });
     infoCard.classList.add("js-info__card--exiting");
+    setCookiesAccepted(); // TODO: fix this to only use when the cookie card is clicked, not on every card
 }
 
 function setCookiesAccepted(){ // TODO: use this function to set cookieCookie, also figure out how to do that..
