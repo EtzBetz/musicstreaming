@@ -8,6 +8,7 @@
 }
 
 .card--small {
+    position: relative;
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     margin: 10px 15px;
     max-width: 210px;
