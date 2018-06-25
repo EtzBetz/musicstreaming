@@ -195,80 +195,101 @@ if (isset($_GET["p"])) {
                         switch ($_POST['searchType']) {
                             case "all":
                                 $songIds = DBConnect::searchForSongs($searchString);
-                                $songs = array();
-                                for ($i = 0; $i < count($songIds); $i++) {
-                                    $songs[] = new Song($songIds[$i]);
+                                if ($songIds !== false) {
+                                    $songs = array();
+                                    for ($i = 0; $i < count($songIds); $i++) {
+                                        $songs[] = new Song($songIds[$i]);
+                                    }
+                                    $smarty->assign("songs", $songs);
                                 }
-                                $smarty->assign("songs", $songs);
 
                                 $albumIds = DBConnect::searchForAlbums($searchString);
-                                $albums = array();
-                                for ($i = 0; $i < count($albumIds); $i++) {
-                                    $albums[] = new Album($albumIds[$i]);
+                                if ($albumIds !== false) {
+                                    $albums = array();
+                                    for ($i = 0; $i < count($albumIds); $i++) {
+                                        $albums[] = new Album($albumIds[$i]);
+                                    }
+                                    $smarty->assign("albums", $albums);
                                 }
-                                $smarty->assign("albums", $albums);
 
                                 $playlistIds = DBConnect::searchForPlaylists($searchString);
-                                $playlists = array();
-                                for ($i = 0; $i < count($playlistIds); $i++) {
-                                    $playlists[] = new Playlist($playlistIds[$i]);
+                                if ($playlistIds !== false) {
+                                    $playlists = array();
+                                    for ($i = 0; $i < count($playlistIds); $i++) {
+                                        $playlists[] = new Playlist($playlistIds[$i]);
+                                    }
+                                    $smarty->assign("playlists", $playlists);
                                 }
-                                $smarty->assign("playlists", $playlists);
 
                                 $artistIds = DBConnect::searchForArtists($searchString);
-                                $artists = array();
-                                for ($i = 0; $i < count($artistIds); $i++) {
-                                    $artists[] = new Artist($artistIds[$i]);
+                                if ($artistIds !== false) {
+                                    $artists = array();
+                                    for ($i = 0; $i < count($artistIds); $i++) {
+                                        $artists[] = new Artist($artistIds[$i]);
+                                    }
+                                    $smarty->assign("artists", $artists);
                                 }
-                                $smarty->assign("artists", $artists);
 
                                 $userIds = DBConnect::searchForUsers($searchString);
-                                $users = array();
-                                for ($i = 0; $i < count($userIds); $i++) {
-                                    $users[] = new User($userIds[$i]);
+                                if ($userIds !== false) {
+                                    var_dump($userIds);
+                                    $users = array();
+                                    for ($i = 0; $i < count($userIds); $i++) {
+                                        $users[] = new User($userIds[$i]);
+                                    }
+                                    $smarty->assign("users", $users);
                                 }
-                                $smarty->assign("users", $users);
 
                                 break;
                             case "song":
                                 $songIds = DBConnect::searchForSongs($searchString);
-                                $songs = array();
-                                for ($i = 0; $i < count($songIds); $i++) {
-                                    $songs[] = new Song($songIds[$i]);
+                                if ($songIds !== false) {
+                                    $songs = array();
+                                    for ($i = 0; $i < count($songIds); $i++) {
+                                        $songs[] = new Song($songIds[$i]);
+                                    }
+                                    $smarty->assign("songs", $songs);
                                 }
-                                $smarty->assign("songs", $songs);
                                 break;
                             case "album":
                                 $albumIds = DBConnect::searchForAlbums($searchString);
-                                $albums = array();
-                                for ($i = 0; $i < count($albumIds); $i++) {
-                                    $albums[] = new Album($albumIds[$i]);
+                                if ($albumIds !== false) {
+                                    $albums = array();
+                                    for ($i = 0; $i < count($albumIds); $i++) {
+                                        $albums[] = new Album($albumIds[$i]);
+                                    }
+                                    $smarty->assign("albums", $albums);
                                 }
-                                $smarty->assign("albums", $albums);
                                 break;
                             case "playlist":
                                 $playlistIds = DBConnect::searchForPlaylists($searchString);
-                                $playlists = array();
-                                for ($i = 0; $i < count($playlistIds); $i++) {
-                                    $playlists[] = new Playlist($playlistIds[$i]);
+                                if ($playlistIds !== false) {
+                                    $playlists = array();
+                                    for ($i = 0; $i < count($playlistIds); $i++) {
+                                        $playlists[] = new Playlist($playlistIds[$i]);
+                                    }
+                                    $smarty->assign("playlists", $playlists);
                                 }
-                                $smarty->assign("playlists", $playlists);
                                 break;
                             case "artist":
                                 $artistIds = DBConnect::searchForArtists($searchString);
-                                $artists = array();
-                                for ($i = 0; $i < count($artistIds); $i++) {
-                                    $artists[] = new Artist($artistIds[$i]);
+                                if ($artistIds !== false) {
+                                    $artists = array();
+                                    for ($i = 0; $i < count($artistIds); $i++) {
+                                        $artists[] = new Artist($artistIds[$i]);
+                                    }
+                                    $smarty->assign("artists", $artists);
                                 }
-                                $smarty->assign("artists", $artists);
                                 break;
                             case "user":
                                 $userIds = DBConnect::searchForUsers($searchString);
-                                $users = array();
-                                for ($i = 0; $i < count($userIds); $i++) {
-                                    $users[] = new User($userIds[$i]);
+                                if ($userIds !== false) {
+                                    $users = array();
+                                    for ($i = 0; $i < count($userIds); $i++) {
+                                        $users[] = new User($userIds[$i]);
+                                    }
+                                    $smarty->assign("users", $users);
                                 }
-                                $smarty->assign("users", $users);
                                 break;
                         }
                         break;
