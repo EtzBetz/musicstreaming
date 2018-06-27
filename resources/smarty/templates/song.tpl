@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <div class="content--set-column content--center-align">
     <div class="content--set-row content--center-align">
-        <div class="card card--no-padding">
+        <div class="card card--no-padding song__card">
             {if isset($song) && isset($artist) && isset($user) && isset($cover)}
                 <div><img class="song__cover" src="{$configArr["urls"]["coverDirectory"]}{$cover->getFilename()}"/></div>
                 <div><audio class="song__controls" src="{$configArr["urls"]["musicDirectory"]}{$song->getFilename()}" controls controlsList="nodownload" preload="auto"></audio></div>

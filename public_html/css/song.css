@@ -1,9 +1,13 @@
 
+.song__card {
+    max-width: 500px;
+}
+
 .song__cover {
     width: 100%;
     height: auto;
-    max-width: 600px;
-    max-height: 600px; /* TODO: fix card not getting bigger when titles getting longer, afterwards set back to 500px  */
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .song__controls {
@@ -14,6 +18,7 @@
 .song__title-genre {
     padding: 8px 8px 0 8px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .song__title {
