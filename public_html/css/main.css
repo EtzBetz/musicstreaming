@@ -52,6 +52,20 @@ textarea {
     flex-direction: column;
 }
 
+.content--whole-column {
+    width: 100%;
+}
+
+.content--add-horizontal-scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /*background-color: #ededed;*/
+}
+
+.content--add-horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
 .content--center-align {
     justify-content: center;
     text-align: center;

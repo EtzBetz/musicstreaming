@@ -90,6 +90,11 @@ class Playlist {
         $this->userId = $id;
     }
 
+    public function getUser() {
+        require_once(__DIR__ . "/User.php");
+        return new User($this->getUserId());
+    }
+
     /**
      * @return array
      */

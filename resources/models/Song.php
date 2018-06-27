@@ -240,6 +240,11 @@ class Song {
         $this->artistId = $artistId;
     }
 
+    public function getArtist() {
+        require_once (__DIR__ . "/Artist.php");
+        return new Artist($this->getArtistId());
+    }
+
     /**
      * @return mixed
      */

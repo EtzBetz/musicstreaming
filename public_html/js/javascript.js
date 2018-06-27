@@ -3,11 +3,10 @@ window.onscroll = function() {shrinkingHeader()};
 var header = document.getElementById("header");
 var songtextbutton = document.getElementById("song__songtext-button");
 
-/* Dynamic Height for spacer of the header div */ /*
-var headerContainer = document.getElementById("headerContainer");
-var header__spacer = document.getElementById("header__spacer");
-var containerHeight = headerContainer.clientHeight.toString();
-header__spacer.style.height = containerHeight + "px"; */
+var allDivs = document.getElementsByClassName("content--add-horizontal-scroll");
+Array.from(allDivs).forEach(function(element) {
+    checkScroll(element);
+});
 
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
@@ -34,4 +33,17 @@ function setCookiesAccepted(){ // TODO: use this function to set cookieCookie, a
 
 function toggleSongtext(){
     songtextbutton.classList.toggle("js-songtext--show");
+}
+
+function scrollHorizontal(button, direction) {
+    var scrollAmount = (window.innerWidth * 0.8);
+    if (direction === "left") {
+        scrollAmount = -scrollAmount;
+    }
+    button.parentElement.nextElementSibling.scrollBy({ top: 0, left: scrollAmount, behavior: 'smooth' });
+}
+
+function checkScroll(container) {
+    container.previousElementSibling.lastElementChild.disabled = container.scrollWidth <= container.scrollLeft + window.innerWidth;
+    container.previousElementSibling.firstElementChild.disabled = container.scrollLeft <= 0;
 }

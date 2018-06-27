@@ -154,6 +154,11 @@ class Album {
         $this->artistId = $id;
     }
 
+    public function getArtist() {
+        require_once (__DIR__ . "/Artist.php");
+        return new Artist($this->getArtistId());
+    }
+
 
     public function getCover() {
         require_once (__DIR__ . "/Cover.php");

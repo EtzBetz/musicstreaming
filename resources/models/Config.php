@@ -56,7 +56,7 @@ class Config {
             "mainTitle" => "Music Streaming",
             "titleSeparator" => " | ",
             "madeWithLove1" => "Made with ",
-            "madeWithLove2" => " by Qwatch GmbH",
+            "madeWithLove2" => " by Raphael",
             "cookieText" => "Diese Website benutzt Cookies, um dir die bestmögliche Nutzererfahrung zu bieten.",
             "cookieButton" => "Mir doch egal",
             "github" => "Dieses Projekt auf GitHub anzeigen",

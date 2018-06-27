@@ -9,26 +9,69 @@
 
 .card--small {
     position: relative;
+    min-width: 200px;
+    width: 200px;
+    min-height: 200px;
+    height: 200px;
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-    margin: 10px 15px;
-    max-width: 210px;
+    margin-top: 15px;
+    margin-bottom: 35px;
 }
 
 .card--small:hover {
-    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.3);
-    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px) scale(1.02);
 }
 
-.card--small > img {
+.song_cover--small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
     transition: all .2s;
     box-shadow: 0 4px 150px 0 rgba(0, 0, 0, 0.0);
+    background-color: #424242;
 }
 
-/*.card--small:hover > img {
-    box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.15);
-    transform: translateY(-15px) translateX(3px) scale(1.1) rotate(5deg);
-    border-radius: 100px;
-}*/
+.card--small:hover .song_cover--small {
+    filter: saturate(1.6);
+}
+
+.card__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    background: linear-gradient(to bottom, rgba(0,0,0,0)60%,rgba(0,0,0,0.20) 80%,rgba(0,0,0,0.25) 100%)
+}
+
+.card__title, .card__artist {
+    position: relative;
+    bottom: 0;
+    color: white;
+    transition: all .2s;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.card__title {
+    padding: 8px 8px 2px;
+}
+
+.card__artist {
+    padding: 2px 8px 8px;
+}
+
+.card--small:hover  .card__title {
+    /*padding: 16px 8px;*/
+}
 
 .card--no-padding {
     padding: 0;
