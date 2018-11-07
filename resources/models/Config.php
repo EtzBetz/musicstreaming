@@ -95,6 +95,7 @@ class Config {
             "albumtitle" => "Albumtitel",
             "playlisttitle" => "Playlisttitel",
             "artisttitle" => "Künstlertitel",
+            "albumposition" => "Position im Album",
             "artist" => "Künstler",
             "songs" => "Songs",
             "genres" => "Genres",

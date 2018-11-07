@@ -18,27 +18,33 @@
 
 
     <div>
-        <div class="index__container-navigation">
-            <button onclick="scrollHorizontal(this,'left')" class="index__icon-left"><svg viewBox='0 0 24 24'><path></path></svg></button>
-            <button onclick="scrollHorizontal(this,'right')" class="index__icon-right"><svg viewBox='0 0 24 24'><path></path></svg></button>
-        </div>
-        <div id="container" class="content--set-row content--whole-column content--add-horizontal-scroll" onload="checkScroll(this)" onscroll="checkScroll(this)">
-            {foreach $popularAlbums as $album}
-                <div class="card card--no-padding card--small">
-                    <a href="{$configArr.urls.album}&{$configArr.urls.id}{$album->getId()}" class="button--reset-uppercase">
-                        <img class="song_cover--small" src="{$configArr["urls"]["coverDirectory"]}{$album->getCover()->getFilename()}"/>
-                        <div class="card__overlay">
-                            <span class="card__artist">von {$album->getArtist()->getName()}</span>
-                            <span class="card__title">{$album->getName()}</span>
-                        </div>
-                    </a>
-                </div>
-                {if $album@index > $maxCards - 2}
-                    {break}
-                {/if}
-            {/foreach}
-            <div style="width:0;">&nbsp;</div>
-        </div>
+        {if count($popularAlbums) > 0}
+            <div class="index__container-navigation">
+                <button onclick="scrollHorizontal(this,'left')" class="index__icon-left"><svg viewBox='0 0 24 24'><path></path></svg></button>
+                <button onclick="scrollHorizontal(this,'right')" class="index__icon-right"><svg viewBox='0 0 24 24'><path></path></svg></button>
+            </div>
+            <div id="container" class="content--set-row content--whole-column content--add-horizontal-scroll" onload="checkScroll(this)" onscroll="checkScroll(this)">
+                {foreach $popularAlbums as $album}
+                    <div class="card card--no-padding card--small">
+                        <a href="{$configArr.urls.album}&{$configArr.urls.id}{$album->getId()}" class="button--reset-uppercase">
+                            <img class="song_cover--small" src="{$configArr["urls"]["coverDirectory"]}{$album->getCover()->getFilename()}"/>
+                            <div class="card__overlay">
+                                <span class="card__artist">von {$album->getArtist()->getName()}</span>
+                                <span class="card__title">{$album->getName()}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {if $album@index > $maxCards - 2}
+                        {break}
+                    {/if}
+                {/foreach}
+                <div style="width:0;">&nbsp;</div>
+            </div>
+        {else}
+            <div class="index__no-content content--set-row">
+                <span class="">Zurzeit sind keine beliebten Alben vorhanden.</span>
+            </div>
+        {/if}
     </div>
 
 
@@ -52,27 +58,33 @@
         <span class="">Singles:</span>
     </div>
     <div>
-        <div class="index__container-navigation">
-            <button onclick="scrollHorizontal(this,'left')" class="index__icon-left"><svg viewBox='0 0 24 24'><path></path></svg></button>
-            <button onclick="scrollHorizontal(this,'right')" class="index__icon-right"><svg viewBox='0 0 24 24'><path></path></svg></button>
-        </div>
-        <div class="content--set-row content--whole-column content--add-horizontal-scroll" onscroll="checkScroll(this)">
-            {foreach $popularSingles as $song}
-                <div class="card card--no-padding card--small">
-                    <a href="{$configArr.urls.song}&{$configArr.urls.id}{$song->getId()}" class="button--reset-uppercase">
-                        <img class="song_cover--small" src="{$configArr["urls"]["coverDirectory"]}{$song->getCover()->getFilename()}"/>
-                        <div class="card__overlay">
-                            <span class="card__artist">von {$song->getArtist()->getName()}</span>
-                            <span class="card__title">{$song->getName()}</span>
-                        </div>
-                    </a>
-                </div>
-                {if $song@index > $maxCards - 2}
-                    {break}
-                {/if}
-            {/foreach}
-            <div style="width:0;">&nbsp;</div>
-        </div>
+        {if count($popularSingles) > 0}
+            <div class="index__container-navigation">
+                <button onclick="scrollHorizontal(this,'left')" class="index__icon-left"><svg viewBox='0 0 24 24'><path></path></svg></button>
+                <button onclick="scrollHorizontal(this,'right')" class="index__icon-right"><svg viewBox='0 0 24 24'><path></path></svg></button>
+            </div>
+            <div class="content--set-row content--whole-column content--add-horizontal-scroll" onscroll="checkScroll(this)">
+                {foreach $popularSingles as $song}
+                    <div class="card card--no-padding card--small">
+                        <a href="{$configArr.urls.song}&{$configArr.urls.id}{$song->getId()}" class="button--reset-uppercase">
+                            <img class="song_cover--small" src="{$configArr["urls"]["coverDirectory"]}{$song->getCover()->getFilename()}"/>
+                            <div class="card__overlay">
+                                <span class="card__artist">von {$song->getArtist()->getName()}</span>
+                                <span class="card__title">{$song->getName()}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {if $song@index > $maxCards - 2}
+                        {break}
+                    {/if}
+                {/foreach}
+                <div style="width:0;">&nbsp;</div>
+            </div>
+        {else}
+            <div class="index__no-content content--set-row">
+                <span class="">Zurzeit sind keine beliebten Singles vorhanden.</span>
+            </div>
+        {/if}
     </div>
     <div class="index__category content--set-row">
         <span class="text--title">Die neuesten Inhalte</span>

@@ -20,6 +20,7 @@ class Song {
     protected $songtext;
     protected $coverId;
     protected $albumId;
+    protected $albumPosition;
 
     /**
      * Song constructor.
@@ -30,21 +31,22 @@ class Song {
 
         $data = DBConnect::getSongAttributes($id);
 
-        $this->name = $data["name"];
-        $this->filename = $data["filename"];
-        $this->visits = DBConnect::getNumberOfVisits($this->getId());
-        $this->created = $data["created"];
-        $this->userId = $data["userId"];
-        $this->artistId = $data["artistId"];
-        $this->genreId = $data["genreId"];
-        $this->genre = $data["genre"];
-        $this->songtextId = $data["songtextId"];
-        $this->songtext = nl2br($data["songtext"]);
-        $this->coverId = $data["coverId"];
-        $this->albumId = $data["albumId"];
+        $this->setName(                 $data["name"]);
+        $this->setFilename(             $data["filename"]);
+        $this->setVisits(       DBConnect::getNumberOfVisits($this->getId()));
+        $this->setCreated(              $data["created"]);
+        $this->setUserId(               $data["userId"]);
+        $this->setArtistId(             $data["artistId"]);
+        $this->setGenreId(              $data["genreId"]);
+        $this->setGenre(                $data["genre"]);
+        $this->setSongtextId(           $data["songtextId"]);
+        $this->setSongtext(     nl2br(  $data["songtext"]));
+        $this->setCoverId(              $data["coverId"]);
+        $this->setAlbumId(              $data["albumId"]);
+        $this->setAlbumPosition(           $data["albumOrder"]);
     }
 
-    public static function createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText) {
+    public static function createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText, $songAlbumPosition) { // TODO: verify songAlbumPosition
 
                 if($songAlbum == "none") {$songAlbum = null;}
 
@@ -93,12 +95,12 @@ class Song {
                     InfoList::addInfo(new Info("Your uploaded Audio file wasn't recognized as audio.", "Try another format", "", "red"));
                 }
 
-                if ($_FILES["musiccover"]["size"] > 52428800){ // TODO: Herr Menne, hier müssen Sie die Dateigröße ändern
+                if ($_FILES["musiccover"]["size"] > 52428800){
                     $uploadFiles = false;
                     InfoList::addInfo(new Info("Your uploaded Cover file exceeded the maximum file size.", "Okay", "", "red"));
                 }
 
-                if ($_FILES["musicfile"]["size"] > 52428800) { // TODO: Herr Menne, hier müssen Sie die Dateigröße ändern²
+                if ($_FILES["musicfile"]["size"] > 52428800) {
                     $uploadFiles = false;
                     InfoList::addInfo(new Info("Your uploaded Music file exceeded the maximum file size.", "Okay", "", "red"));
                 }
@@ -115,7 +117,7 @@ class Song {
 
                 if ($uploadFiles == true) {
                     if (move_uploaded_file($_FILES["musicfile"]["tmp_name"], $uploadFilepathMusic) && move_uploaded_file($_FILES["musiccover"]["tmp_name"], $uploadFilepathCover)) {
-                        $songId = DBConnect::insertSong($songTitle, ($curTimestamp . basename($_FILES["musicfile"]["name"])), $_SESSION["userId"], $songArtist, $songGenre, $songText, $curTimestamp . basename($_FILES["musiccover"]["name"]), $songAlbum);
+                        $songId = DBConnect::insertSong($songTitle, ($curTimestamp . basename($_FILES["musicfile"]["name"])), $_SESSION["userId"], $songArtist, $songGenre, $songText, $curTimestamp . basename($_FILES["musiccover"]["name"]), $songAlbum, $songAlbumPosition);
                         header("Location: " . Config::configArr['urls']['base'] . Config::configArr['urls']['song'] . "&" . Config::configArr['urls']['id'] . $songId);
                         die();
 
@@ -123,7 +125,7 @@ class Song {
                         InfoList::addInfo(new Info("The file couldn't be saved. Try again or contact us.", "Okay", "", "red"));
                     }
                 }
-    }
+    } // TODO: add albumorder into function/query
 
     protected static function isFileAnImage() {
         if (!getimagesize($_FILES["musiccover"]["tmp_name"])) {
@@ -332,6 +334,20 @@ class Song {
      */
     public function setAlbumId($albumId) {
         $this->albumId = $albumId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlbumPosition() {
+        return $this->albumPosition;
+    }
+
+    /**
+     * @param mixed $albumPosition
+     */
+    public function setAlbumPosition($albumPosition) {
+        $this->albumPosition = $albumPosition;
     }
 
 

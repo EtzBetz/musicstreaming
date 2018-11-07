@@ -7,7 +7,7 @@
                 <div><p class="text--title content--center-align">{$album->getName()}</p></div>
                 <div>von <a href="{$configArr.urls.artist}&{$configArr.urls.id}{$artist->getId()}" class="text--title content--center-align">{$artist->getName()}</a></div>
                 {foreach $songs as $song}
-                    <div>{$song@index+1}. <a href="{$configArr.urls.song}&{$configArr.urls.id}{$song->getId()}" class="content--center-align">{$song->getName()}</a></div>
+                    <div>{$song->getAlbumPosition()}. <a href="{$configArr.urls.song}&{$configArr.urls.id}{$song->getId()}" class="content--center-align">{$song->getName()}</a></div>
                 {/foreach}
             {else}
                 <p class="text--title content--center-align">Interner Fehler.</p>

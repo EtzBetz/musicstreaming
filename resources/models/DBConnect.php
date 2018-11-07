@@ -47,7 +47,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongAttributes($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.name, song.filename, song.visits, song.created, song.userid, song.artistid, song.genreid, song.songtextid, song.coverid, song.albumid, genre.name as genrename, songtext.content as songtextcontent, cover.filename as coverfilename FROM song LEFT JOIN genre ON song.genreid = genre.id LEFT JOIN songtext ON song.songtextid = songtext.id LEFT JOIN cover ON song.coverid = cover.id WHERE song.id = :id");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumorder, song.name, song.filename, song.visits, song.created, song.userid, song.artistid, song.genreid, song.songtextid, song.coverid, song.albumid, genre.name as genrename, songtext.content as songtextcontent, cover.filename as coverfilename FROM song LEFT JOIN genre ON song.genreid = genre.id LEFT JOIN songtext ON song.songtextid = songtext.id LEFT JOIN cover ON song.coverid = cover.id WHERE song.id = :id");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -70,6 +70,7 @@ class DBConnect {
                     "coverId"       => $row['coverid'],
                     "coverFilename" => $row['coverfilename'],
                     "albumId"       => $row['albumid'],
+                    "albumOrder"    => $row['albumorder'],
                 );
             }
         }
@@ -266,7 +267,7 @@ class DBConnect {
         return $data;
     }
     public static function getSongsFromAlbum($id) {
-        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumid FROM song WHERE song.albumid = :id ORDER BY song.name ASC");
+        $query = DBConnect::getInstance()->connection->prepare("SELECT song.id, song.albumid FROM song WHERE song.albumid = :id ORDER BY song.albumorder ASC");
         $query->bindParam(":id", $id);
         $query->execute();
 
@@ -464,7 +465,7 @@ class DBConnect {
             return true;
         } else return false;
     }
-    public static function insertSong($name, $filename, $userId, $artistId, $genreId, $songtext, $coverFilename, $albumId) {
+    public static function insertSong($name, $filename, $userId, $artistId, $genreId, $songtext, $coverFilename, $albumId, $albumOrder) {
         DBConnect::getInstance()->connection->beginTransaction();
 
         $query = DBConnect::getInstance()->connection->prepare("BEGIN");
@@ -496,8 +497,9 @@ class DBConnect {
             }
         }
 
-        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO song(name, filename, created, userid, artistid, genreid, songtextid, coverid, albumid) VALUES(:name, :filename, :created, :userId, :artistId, :genreId, :songtextId, :coverId, :albumId)");
+        $query = DBConnect::getInstance()->connection->prepare("INSERT INTO song(name, albumorder, filename, created, userid, artistid, genreid, songtextid, coverid, albumid) VALUES(:name, :albumorder, :filename, :created, :userId, :artistId, :genreId, :songtextId, :coverId, :albumId)");
         $query->bindParam(":name", $name);
+        $query->bindParam(":albumorder", $albumOrder);
         $query->bindParam(":filename", $filename);
         $time = new DateTime();
         $time = $time->format("Y-m-d H:i:s");
@@ -526,7 +528,7 @@ class DBConnect {
         } else {
             return false;
         }
-    }
+    } // TODO: add albumOrder to query
     public static function insertAlbum($name, $artistId, $coverFilename) {
         DBConnect::getInstance()->connection->beginTransaction();
 
@@ -720,7 +722,7 @@ class DBConnect {
                 }
             }
         }
-        arsort($data);
+        if (count($data) > 0) arsort($data);
         return $data;
     }
     public static function getPopularAlbums() {
@@ -751,23 +753,27 @@ class DBConnect {
         }
 
         $rawDataAlbums = array();
-        foreach ($rawDataSongs as $songId => $visits) {
-            $songAlbum = DBConnect::getSongAttributes($songId)['albumId'];
-            if (isset($rawDataAlbums[$songAlbum]['visits'], $rawDataAlbums[$songAlbum]['songCount'])) {
-                $rawDataAlbums[$songAlbum]['visits'] += $visits;
-                $rawDataAlbums[$songAlbum]['songCount'] ++;
-            } else {
-                $rawDataAlbums[$songAlbum]['visits'] = $visits;
-                $rawDataAlbums[$songAlbum]['songCount'] = 1;
+        if (count($rawDataSongs) > 0) {
+            foreach ($rawDataSongs as $songId => $visits) {
+                $songAlbum = DBConnect::getSongAttributes($songId)['albumId'];
+                if (isset($rawDataAlbums[$songAlbum]['visits'], $rawDataAlbums[$songAlbum]['songCount'])) {
+                    $rawDataAlbums[$songAlbum]['visits'] += $visits;
+                    $rawDataAlbums[$songAlbum]['songCount'] ++;
+                } else {
+                    $rawDataAlbums[$songAlbum]['visits'] = $visits;
+                    $rawDataAlbums[$songAlbum]['songCount'] = 1;
+                }
             }
         }
 
         $data = array();
-        foreach ($rawDataAlbums as $albumId => $visitsAndSongCountArr) {
-            $data[$albumId] = intval(($visitsAndSongCountArr['visits'] / $visitsAndSongCountArr['songCount']));
+        if (count($rawDataAlbums) > 0) {
+            foreach ($rawDataAlbums as $albumId => $visitsAndSongCountArr) {
+                $data[$albumId] = intval(($visitsAndSongCountArr['visits'] / $visitsAndSongCountArr['songCount']));
+            }
         }
 
-        arsort($data);
+        if (count($data) > 0) arsort($data);
         return $data;
     }
     public static function checkIfEmailExists($email) {

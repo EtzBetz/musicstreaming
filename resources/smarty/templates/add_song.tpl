@@ -23,6 +23,10 @@
                     </select>
                 </div>
                 <div class="card__column content--set-column">
+                    <input class="card__input" placeholder="{$configArr.strings.albumposition}" type="text" alt="{$configArr.strings.albumposition}" pattern="[0-9]{ldelim}1,3{rdelim}" id="albumPosition" name="albumPosition" required>
+                    <span class="card__input__warning">{$configArr.strings.enterValidTitle}</span> {* TODO: change header info div css to div.info and change this to class="info" *}
+                </div>
+                <div class="card__column content--set-column">
                     <input class="card__input" placeholder="{$configArr.strings.musictitle}" type="text" alt="{$configArr.strings.musictitle}" pattern="[A-z0-9À-ž\s().'-]{ldelim}3,64{rdelim}" id="title" name="title" required>
                     <span class="card__input__warning">{$configArr.strings.enterValidTitle}</span> {* TODO: change header info div css to div.info and change this to class="info" *}
                 </div>

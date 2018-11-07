@@ -13,8 +13,12 @@
 .index__category{
     margin: 0 20px;
     font-size: 14pt;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: #2d2d2d;
+}
+
+.index__no-content{
+    margin: 30px;
 }
 
 

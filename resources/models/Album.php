@@ -24,11 +24,12 @@ class Album {
 
         $albumData = DBConnect::getAlbumAttributes($this->getId());
 
-        $this->setName($albumData['name']);
-        $this->setCreated($albumData['created']);
-        $this->setArtistId($albumData['artistId']);
-        $this->setCoverId($albumData['coverId']);
-        $this->setSongIds(DBConnect::getSongsFromAlbum($this->getId()));
+        $this->setName(     $albumData['name']);
+        $this->setCreated(  $albumData['created']);
+        $this->setArtistId( $albumData['artistId']);
+        $this->setCoverId(  $albumData['coverId']);
+        $this->setSongIds(  DBConnect::getSongsFromAlbum($this->getId()));
+
         $songVisits = 0;
         $songIds = $this->getSongIds();
         if (isset($songIds)) {
@@ -36,6 +37,7 @@ class Album {
                 $songVisits += DBConnect::getNumberOfVisits($songId);
             }
         }
+
         $this->setSongVisits($songVisits);
     }
 

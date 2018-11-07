@@ -304,14 +304,15 @@ if (isset($_GET["p"])) {
                         require_once(__DIR__ . "/../resources/models/Song.php");
                         require_once(__DIR__ . "/../resources/libs/getid3/getid3.php");
                         if (isset($_SESSION["username"], $_SESSION["userId"])) {
-                            if (isset($_POST["title"], $_POST["album"], $_POST["artist"], $_POST["genre"], $_POST["songtext"])) {
+                            if (isset($_POST["title"], $_POST["album"], $_POST["artist"], $_POST["genre"], $_POST["songtext"], $_POST["albumPosition"])) {
                                 $songTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
                                 $songAlbum = filter_input(INPUT_POST, 'album', FILTER_SANITIZE_STRING);
                                 $songArtist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_STRING);
                                 $songGenre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
                                 $songText = filter_input(INPUT_POST, 'songtext', FILTER_SANITIZE_STRING);
+                                $songAlbumPosition = filter_input(INPUT_POST, 'albumPosition', FILTER_SANITIZE_STRING);
                                 try {
-                                    Song::createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText);
+                                    Song::createNewSong($songTitle, $songAlbum, $songArtist, $songGenre, $songText, $songAlbumPosition);
                                 } catch (Exception $exception) {
                                     $exception->getMessage();
                                 }
@@ -474,9 +475,11 @@ if (isset($_GET["p"])) {
     $popularSingleIdsVisits = DBConnect::getPopularSingles();
     $popularSingles = array();
     $i = 0;
-    foreach ($popularSingleIdsVisits as $id => $value) {
-        $popularSingles[$i] = new Song($id);
-        $i++;
+    if (count($popularSingleIdsVisits) > 0) {
+        foreach ($popularSingleIdsVisits as $id => $value) {
+            $popularSingles[$i] = new Song($id);
+            $i++;
+        }
     }
     $smarty->assign("popularSingleIdsVisits", $popularSingleIdsVisits);
     $smarty->assign("popularSingles", $popularSingles);
