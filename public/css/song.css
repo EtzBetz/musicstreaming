@@ -101,20 +101,20 @@
 }
 
 .js-songtext--show + .song__songtext {
-    max-height: 10000px;
+    /* max-height: 10000px; */
     opacity: 1;
     transition: opacity .6s, max-height 1.5s ease-in;
     padding: 8px 16px 16px 16px;
 }
 
 .song__songtext {
-    height: auto;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:opacity .6s, max-height .3s ease-out, padding .3s;
+    /* height: auto; */
+    /* max-height: 0; */
+    /* opacity: 0; */
+    /* overflow: hidden; */
+    /* transition:opacity .6s, max-height .3s ease-out, padding .3s; */
     font-style: italic;
-    color: #424242;
-    padding: 0 16px 0 16px;
-    background-color: #f9f9f9;
+    /* color: #424242; */
+    /* padding: 0 16px 0 16px; */
+    /* background-color: #f9f9f9; */
 }

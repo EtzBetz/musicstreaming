@@ -8,4 +8,4 @@
 
 
 session_destroy();
-header('Location: ../public_html/index.php');
+header('Location: ../ppublic/index.php');

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var selectedArtistId = uploadFormArtist.options[uploadFormArtist.selectedIndex].value;
 
-        fetch('http://localhost/musicstreaming/public_html/?p=api_albums&artistid=' + selectedArtistId).then(function(rawResponse) {
+        fetch('http://localhost/musicstreaming/public/?p=api_albums&artistid=' + selectedArtistId).then(function(rawResponse) {
             rawResponse.json().then(function(json){
                 if (json != null){
                     for(var i = 0; i < json.length; i++) {

@@ -21,7 +21,7 @@ class Config {
             "host" => "127.0.0.1",
         ),
         "urls" => array(
-            "base" => "http://localhost/musicstreaming/public_html",
+            "base" => "http://localhost/musicstreaming/public",
             "id" => "id=",
             "do" => "do=",
             "register" => "?p=register",
@@ -49,8 +49,8 @@ class Config {
             "githubProject" => "https://github.com/derRAV3N/musicstreaming",
             "coverDirectory" => "./content_files/images/cover/",
             "musicDirectory" => "./content_files/music/",
-            "coverDirectoryInternal" => "/musicstreaming/public_html/content_files/images/cover/",
-            "musicDirectoryInternal" => "/musicstreaming/public_html/content_files/music/",
+            "coverDirectoryInternal" => "/musicstreaming/public/content_files/images/cover/",
+            "musicDirectoryInternal" => "/musicstreaming/public/content_files/music/",
         ),
         "strings" => array(
             "mainTitle" => "Music Streaming",
