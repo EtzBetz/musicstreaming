@@ -95,12 +95,14 @@ class Song {
                     InfoList::addInfo(new Info("Your uploaded Audio file wasn't recognized as audio.", "Try another format", "", "red"));
                 }
 
-                if ($_FILES["musiccover"]["size"] > 52428800){
+                $maxUploadFileSize = 1024 * 1024 * 50; // 50 MB
+
+                if ($_FILES["musiccover"]["size"] > $maxUploadFileSize){
                     $uploadFiles = false;
                     InfoList::addInfo(new Info("Your uploaded Cover file exceeded the maximum file size.", "Okay", "", "red"));
                 }
 
-                if ($_FILES["musicfile"]["size"] > 52428800) {
+                if ($_FILES["musicfile"]["size"] > $maxUploadFileSize) {
                     $uploadFiles = false;
                     InfoList::addInfo(new Info("Your uploaded Music file exceeded the maximum file size.", "Okay", "", "red"));
                 }
